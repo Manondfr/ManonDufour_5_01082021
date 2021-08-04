@@ -1,0 +1,202 @@
+body {
+  margin: 0;
+  padding: 0;
+  width: auto;
+}
+
+a {
+  color: black;
+  text-decoration: none;
+}
+
+header {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background-color: #f4e9f2;
+  padding: 0 20px;
+}
+
+header img {
+  width: 25vw;
+}
+
+@media all and (min-width: 483px) {
+  header img {
+    width: 120px;
+  }
+}
+
+header a {
+  font-weight: 600;
+}
+
+nav ul {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 130px;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+nav ul li {
+  color: #936884;
+}
+
+section {
+  text-align: center;
+}
+
+#heroSection {
+  height: 500px;
+  margin-top: 0;
+  margin-bottom: 10px;
+  background-color: #f4e9f23d;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+}
+
+@media all and (min-width: 483px) {
+  #heroSection {
+    height: 400px;
+  }
+}
+
+@media all and (min-width: 993px) {
+  #heroSection {
+    height: 500px;
+    background-image: url(../img/teddy-5091798.jpg);
+    background-position-y: -20px;
+    background-size: cover;
+    -webkit-box-align: end;
+        -ms-flex-align: end;
+            align-items: flex-end;
+    padding-right: 100px;
+  }
+}
+
+@media all and (min-width: 993px) {
+  #heroSection_blank {
+    background-color: rgba(255, 255, 255, 0.6);
+    padding: 20px 20px 30px 20px;
+    border-radius: 20%;
+  }
+}
+
+h1 {
+  font-family: "Satisfy";
+  font-size: 1.6em;
+  width: 60%;
+  margin: auto;
+  padding: 10px 0;
+}
+
+@media all and (min-width: 993px) {
+  h1 {
+    width: 70%;
+  }
+}
+
+h2 {
+  font-family: "Satisfy";
+  font-size: 1.6em;
+  margin: auto;
+  margin-top: 50px;
+}
+
+p {
+  margin-top: 10px;
+  padding: 0;
+}
+
+button {
+  background-color: #936884;
+  color: white;
+  height: 50px;
+  width: 55%;
+  border-radius: 25px;
+  cursor: pointer;
+  position: relative;
+  border: none;
+  font-size: 1.2em;
+  font-family: "Satisfy";
+}
+
+@media all and (min-width: 483px) {
+  button {
+    width: 220px;
+  }
+}
+
+button:hover::after {
+  opacity: 0.2;
+}
+
+button::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: #c9b2c1;
+  color: white;
+  border: none;
+  border-radius: 25px;
+  opacity: 0;
+  -webkit-transition: opacity 250ms;
+  transition: opacity 250ms;
+  -webkit-box-shadow: 2px 2px 10px #936884;
+          box-shadow: 2px 2px 10px #936884;
+}
+
+footer {
+  background-color: #f4e9f2;
+  margin: 0;
+  padding: 20px 0;
+}
+
+ul {
+  text-align: center;
+  list-style-type: none;
+  padding: 0;
+}
+
+ul li {
+  margin-top: 5px;
+}
+
+#logoPart {
+  width: 15%;
+  margin: auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+i {
+  color: #936884;
+}
+
+i:hover {
+  color: #573e4e;
+}
+/*# sourceMappingURL=style.css.map */

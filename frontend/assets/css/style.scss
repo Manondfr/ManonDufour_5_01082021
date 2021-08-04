@@ -1,0 +1,214 @@
+// Variables
+$logo-color:#f4e9f2;
+$background-color:#f4e9f23d;
+$button-color: #936884;
+$font-family:(headings:"Satisfy", button:"Satisfy", text:"Roboto");
+$font-size:(headings:1.6em, button: 1.2em, text:0.9em);
+
+// Mixins
+@mixin tabletstyle {
+    @media all and (min-width:483px){
+        @content;
+    }
+}
+
+@mixin desktopstyle {
+    @media all and (min-width:993px){
+        @content;
+    }
+}
+
+// Balises générales
+body
+{
+    margin:0;
+    padding:0;
+    width:auto;
+}
+
+a
+{
+    color:black;
+    text-decoration:none;
+}
+
+// Header
+header
+{
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color:$logo-color;
+    padding:0 20px;
+
+    img
+    {
+        width:25vw;
+        @include tabletstyle() {
+            width:120px;
+        }
+    }
+
+    a
+    {
+        font-weight:600;
+    }
+}
+
+nav ul
+{
+    display:flex;
+    width:130px;
+    justify-content: space-between;
+
+    li
+    {
+        color:$button-color;
+    }
+}
+
+// Bannière principale
+section
+{
+    text-align:center;
+}
+
+#heroSection
+{
+    height:500px;
+    margin-top:0;
+    margin-bottom: 10px;
+    background-color: $background-color;
+    display:flex;
+    flex-direction: column;
+    justify-content:space-around;
+    @include tabletstyle() {
+        height:400px;
+    }
+    @include desktopstyle() {
+        height:500px;
+        background-image: url(../img/teddy-5091798.jpg);
+        background-position-y: -20px;
+        background-size:cover;
+        align-items:flex-end;
+        padding-right:100px;
+    }
+}
+
+#heroSection_blank
+{
+    @include desktopstyle() {
+        background-color: rgba(255, 255, 255, 0.6);
+        padding:20px 20px 30px 20px;
+        border-radius:20%;
+    }
+}
+
+
+h1
+{
+    font-family:map-get($map: $font-family, $key: headings);
+    font-size: map-get($map: $font-size, $key: headings);
+    width:60%;
+    margin: auto;
+    padding:10px 0;
+    @include desktopstyle() {
+        width:70%;
+    }
+}
+
+h2
+{
+    font-family:map-get($map: $font-family, $key: headings);
+    font-size: map-get($map: $font-size, $key: headings);
+    margin:auto;
+    margin-top:50px;
+}
+
+p
+{
+    margin-top:10px;
+    padding:0;
+}
+
+button
+{
+    background-color:$button-color;
+    color:white;
+    height:50px;
+    width:55%;
+    border-radius:25px;
+    cursor:pointer;
+    position:relative;
+    border:none;
+    font-size:map-get($map: $font-size, $key: button);
+    font-family: map-get($map: $font-family, $key: button);
+    @include tabletstyle() {
+        width:220px;
+    }
+
+
+    &:hover
+    {
+        &::after
+        {
+            opacity:0.2;
+        }
+    }
+
+    &::after
+    {
+        content:"";
+        position:absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;  
+        left: 0;
+        background-color: lighten($button-color,25%);
+        color:white;
+        border:none;
+        border-radius:25px;
+        opacity:0;
+        transition: opacity 250ms;
+        box-shadow: 2px 2px 10px $button-color;
+    }
+}
+
+
+//Footer
+footer
+{
+    background-color: $logo-color;
+    margin:0;
+    padding:20px 0;
+}
+
+ul
+{
+    text-align:center;
+    list-style-type: none;
+    padding:0;
+
+    li 
+    {
+        margin-top:5px;
+    }
+}
+
+#logoPart
+{
+    width:15%;
+    margin:auto;
+    display:flex;
+    justify-content:space-between;
+}
+
+i
+{
+    color:$button-color;
+
+    &:hover
+    {
+        color:darken($color: $button-color, $amount: 20%);
+    }
+}
