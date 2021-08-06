@@ -3,7 +3,7 @@ $logo-color:#f4e9f2;
 $background-color:#f4e9f23d;
 $button-color: #936884;
 $font-family:(headings:"Satisfy", button:"Satisfy", text:"Roboto");
-$font-size:(headings:1.6em, button: 1.2em, text:0.9em, teddy_description:0.8em);
+$font-size:(headings:1.6em, heading_h2: 1.2em, button: 1.2em, text:0.9em);
 
 // Mixins
 @mixin tabletstyle {
@@ -108,50 +108,25 @@ section
     text-align:center;
 }
 
-#heroSection
+main
 {
-    height:500px;
-    margin-top:0;
-    margin-bottom: 10px;
-    display:flex;
-    flex-direction: column;
-    justify-content:space-around;
-    @include tabletstyle() {
-        height:400px;
-    }
-    @include desktopstyle() {
-        height:500px;
-        background-color: transparent;
-        align-items:flex-end;
-        padding-right:100px;
-    }
-}
-
-#heroSection_blank
-{
-    background-color: rgba(255, 255, 255, 0.6);
-    padding:20px 20px 30px 20px;
-    margin:0px 10px 0px 10px;
-    @include tabletstyle() {
-        margin:0px 15% 0px 15%;
-        border-radius:10%;
-    }
-    @include desktopstyle() {
-        border-radius:20%;
-        margin:0px 15px 0px 0px;
-    }
-}
-
-#mainSection
-{
-    clip-path: polygon(50% 0%, 100% 1%, 100% 100%, 0 100%, 0% 1%);
-    background-color: white;
+    clip-path: inset(5% 10% 5% 10%);
     margin:0;
     border:white solid 1px;
-    @include tabletstyle() {
-        clip-path: polygon(50% 0%, 100% 5%, 100% 100%, 0 100%, 0% 5%);
+}
+
+#cartSection
+{
+    background-color: rgba(255, 255, 255, 0.8);
+    text-align: center;
+    padding:50px 20px 30px 20px;
+    min-height:500px;
+    @include desktopstyle() {
+        border-radius:20%;
     }
 }
+
+
 
 #try
 {
@@ -171,7 +146,7 @@ h1
     width:60%;
     margin: auto;
     padding:10px 0;
-    @include tabletstyle() {
+    @include desktopstyle() {
         width:70%;
     }
 }
@@ -179,18 +154,14 @@ h1
 h2
 {
     font-family:map-get($map: $font-family, $key: headings);
-    font-size: map-get($map: $font-size, $key: headings);
+    font-size: map-get($map: $font-size, $key: heading_h2);
     margin:auto;
-    margin-top:50px;
-    @include tabletstyle() {
-        padding-top:40px;
-    }
-
+    padding-top:40px;
+    margin:50px 20px 0px 20px;
 }
 
 p
 {
-    margin:0;
     margin-top:10px;
     padding:0;
 }
@@ -238,64 +209,6 @@ button
     }
 }
 
-// Affichage des Teddy
-.mainSection__items
-{
-    display:flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
-    @include desktopstyle() {
-        justify-content: space-evenly;
-    }
-}
-
-.itemCard
-{
-    width:70%;
-    max-width:300px;
-    border-radius: 20%;
-    margin:50px 30px;
-    @include desktopstyle() {
-        width:25%;
-        min-width:200px;
-        margin:50px 30px;
-    }
-
-
-    img
-    {
-        width:100%;
-        border-radius: 20%;
-    }
-
-    p:nth-child(3)
-    {
-        padding:0 15px 0 15px;
-        font-size: map-get($map: $font-size, $key: teddy_description);
-    }
-
-    button
-    {
-        margin:25px 0px;
-    }
-}
-
-.nameSection
-{
-    display:flex;
-    justify-content: space-around;
-    align-items: baseline;
-
-    .cartButton
-    {
-        width:60px;
-        position:relative;
-    }
-}
-
-
-
 
 //Footer
 footer
@@ -335,5 +248,31 @@ i
     &:hover
     {
         color:darken($color: $button-color, $amount: 20%);
+    }
+}
+
+// Spécifique page produit
+#teddyPresentation
+{
+    display:flex;
+    position:relative;
+    margin: 0 150px;
+
+    img
+    {
+        position:absolute;
+        left:0;
+        width:55%;
+        clip-path: ellipse(45% 50% at 50% 50%);
+    }
+
+    &__info
+    {
+        text-align: center;
+        border: red solid 1px;
+        position:absolute;
+        right:0;
+        width:45%;
+        height:400px;
     }
 }
