@@ -7,14 +7,14 @@
 	<meta name="robots" content="index,follow">
     <link rel="shortcut icon" type="image/png" href="#">    
 
-	<link rel="stylesheet" href="assets/css/style.css">
+	<link rel="stylesheet" href="assets/css/cartstyle.css">
     <link href="https://fonts.googleapis.com/css2?family=Satisfy&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&family=Shrikhand&display=swap" rel="stylesheet">
     <link href="./fontawesome-free-5.15.3-web/fontawesome-free-5.15.3-web/css/all.min.css" type="text/css" rel="stylesheet">
 	
 	<script src="#"></script>
 
-    <title>Orinoco - Ours en peluche tout doux</title>    
+    <title>Votre panier</title>    
 </head>
 
 <body>
@@ -23,7 +23,7 @@
     <!-- Header -->
     <header>
         <div id="logoPart">
-        <a href="index.html"><img src="assets/img/logo_orinoco.jpg" alt="Logo Orinoco - créateur d'ours en peluche"></a>
+            <a href="index.html"><img src="assets/img/logo_orinoco.jpg" alt="Logo Orinoco - créateur d'ours en peluche"></a>
         </div>
         <nav>
             <button id="mobileOnly">
@@ -35,29 +35,38 @@
             </ul>
         </nav>
     </header>
- 
-    <!-- Bannière hero et ours en peluche -->
+
+    <!-- Contenu du panier et formulaire de commande -->
     <main>
-        <section>
-            <div id="heroSection">
-                <div id="heroSection_blank">
-                    <div>
-                        <h1>Une bulle de douceur pour petits et grands</h1>
-                        <p>BLablbalbalbala<br>BLablbalbalbala<br>BLablbalbalbala<br>BLablbalbalbala<br>BLablbalbalbala<br>BLablbalbalbala<br>BLablbalbalbala<br>BLablbalbalbala<br></p>
+        <div id="cartSection">
+            <h1>Contenu du panier</h1>
+            <div id="cartSection__items">
+                
+            </div>
+            <h2>C'est presque terminé ! Il ne nous manque que quelques informations...</h2>
+            <form>
+                <div class="formInputs">
+                    <div class="formInputs__input">
+                        <label for="firstName">Prénom</label><input id="firstName" name="firstName" size="30" placeholder="André" required aria-required="true"/>
                     </div>
-                    <div id="button">
-                        <button onclick="window.location.href = 'index.html#mainSection'">Découvrez nos nounours</button>
+                    <div class="formInputs__input">
+                        <label for="lastName">Nom</label><input id="lastName" name="lastName" size="30" placeholder="Dupont" required aria-required="true"/>
+                    </div>
+                    <div class="formInputs__input">
+                        <label for="address">Adresse</label><input id="address" name="address" size="30" placeholder="2 Rue du Petit Pont" required aria-required="true" />
+                    </div>
+                    <div class="formInputs__input">
+                        <label for="city">Ville</label><input id="city" name="city" size="30" placeholder="Saint-Priest" required aria-required="true" />
+                    </div>
+                    <div class="formInputs__input">
+                        <label for="email">Adresse mail</label><input id="email" name="email" type="email" size="30" placeholder="andredupont@gmail.com" required aria-required="true" />
                     </div>
                 </div>
-            </div>
-        </section>
-
-        <section id="mainSection">
-            <h2>Découvrez nos créations</h2>
-            
-            <div class="mainSection__items">
-            </div>
-        </section>
+                <div id="button">
+                    <button type="submit">Commander</button>
+                </div>
+            </form>
+        </div>
     </main>
 
 
@@ -73,9 +82,9 @@
                 <li><a href="#">Nous contacter</a></li>
         </ul>
     </footer>
+</div>
 
-    </div>
-
-    <script src="assets/js/home.js"></script>
-    <script src="assets/js/cartManager.js"></script>
+<script src="assets/js/cartManager.js"></script>
+<script src="assets/js/cart.js"></script>
 </body>
+</html>
