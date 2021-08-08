@@ -1,0 +1,257 @@
+body {
+  margin: 0;
+  padding: 0;
+  width: auto;
+  font-family: "Roboto";
+}
+
+a {
+  color: black;
+  text-decoration: none;
+}
+
+h1, h2 {
+  font-family: "Satisfy";
+  margin: auto;
+}
+
+h1 {
+  font-size: 1.6em;
+  width: 60%;
+  padding: 10px 0;
+}
+
+@media all and (min-width: 993px) {
+  h1 {
+    width: 70%;
+  }
+}
+
+h2 {
+  font-size: 1.2em;
+  padding-top: 20px;
+  margin: 30px 20px 0px 20px;
+}
+
+p {
+  margin-top: 10px;
+  padding: 0;
+  font-size: 0.8em;
+}
+
+@media all and (min-width: 483px) {
+  p {
+    font-size: 0.9em;
+  }
+}
+
+button {
+  background-color: #936884;
+  color: white;
+  height: 50px;
+  width: 55%;
+  border-radius: 25px;
+  cursor: pointer;
+  position: relative;
+  border: none;
+  font-size: 1.2em;
+  font-family: "Satisfy";
+}
+
+@media all and (min-width: 483px) {
+  button {
+    width: 220px;
+  }
+}
+
+button:hover::after {
+  opacity: 0.2;
+}
+
+button::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: #c9b2c1;
+  color: white;
+  border: none;
+  border-radius: 25px;
+  opacity: 0;
+  -webkit-transition: opacity 250ms;
+  transition: opacity 250ms;
+  -webkit-box-shadow: 2px 2px 10px #936884;
+          box-shadow: 2px 2px 10px #936884;
+}
+
+header {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 0 20px 0px 0px;
+}
+
+@media all and (min-width: 483px) {
+  header {
+    padding: 0 50px 0px 0px;
+  }
+}
+
+header img {
+  width: 80px;
+  margin-top: 5px;
+}
+
+@media all and (min-width: 483px) {
+  header img {
+    width: 120px;
+    margin-top: 2px;
+  }
+}
+
+header a {
+  font-weight: 600;
+  color: white;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+#logoPart {
+  background-color: #f4e9f2;
+  width: 110px;
+  border-radius: 30% / 70%;
+  margin: 5px 0px 0px 5px;
+  text-align: center;
+}
+
+@media all and (min-width: 483px) {
+  #logoPart {
+    width: 160px;
+  }
+}
+
+#navigationMenu {
+  display: none;
+}
+
+@media all and (min-width: 483px) {
+  #navigationMenu {
+    display: initial;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    width: 180px;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+  }
+}
+
+#navigationMenu li {
+  color: white;
+}
+
+#mobileOnly {
+  fill: white;
+  background-color: transparent;
+  padding-top: 15px;
+}
+
+@media all and (min-width: 483px) {
+  #mobileOnly {
+    display: none;
+  }
+}
+
+#backgroundContainer {
+  background-image: url(../img/teddy-5091798.jpg);
+  background-attachment: fixed;
+  background-size: cover;
+  background-position-x: -100px;
+}
+
+@media all and (min-width: 993px) {
+  #backgroundContainer {
+    background-position-x: -170px;
+  }
+}
+
+#cartSection {
+  background-color: rgba(255, 255, 255, 0.8);
+  text-align: center;
+  padding: 50px 20px 30px 20px;
+  margin: 15px 15px 35px 15px;
+}
+
+@media all and (min-width: 993px) {
+  #cartSection {
+    width: 80%;
+    margin: 35px auto;
+    max-width: 1000px;
+  }
+}
+
+table {
+  margin: 15px auto 25px auto;
+  border-collapse: collapse;
+}
+
+table th, table td {
+  border: 0.5px solid black;
+  width: 250px;
+}
+
+table th {
+  background-color: #936884;
+  color: white;
+}
+
+footer {
+  background-color: #f4e9f2;
+  margin: 0;
+  padding: 20px 0;
+}
+
+ul {
+  text-align: center;
+  list-style-type: none;
+  padding: 0;
+}
+
+ul li {
+  margin-top: 5px;
+}
+
+#socialPart {
+  width: 70%;
+  margin: auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+@media all and (min-width: 483px) {
+  #socialPart {
+    width: 250px;
+  }
+}
+
+i {
+  color: #936884;
+}
+
+i:hover {
+  color: #573e4e;
+}
+/*# sourceMappingURL=orderconfirmstyle.css.map */

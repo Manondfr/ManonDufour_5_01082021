@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="FR">
+<head>
+    <meta charset="utf-8">
+    <meta name="description" content="A remplir">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="robots" content="index,follow">
+    <link rel="shortcut icon" type="image/png" href="#">    
+
+	<link rel="stylesheet" href="assets/css/orderconfirmstyle.css">
+    <link href="https://fonts.googleapis.com/css2?family=Satisfy&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&family=Shrikhand&display=swap" rel="stylesheet">
+    <link href="./fontawesome-free-5.15.3-web/fontawesome-free-5.15.3-web/css/all.min.css" type="text/css" rel="stylesheet">
+	
+	<script src="#"></script>
+
+    <title>Votre panier</title>    
+</head>
+
+<body>
+    <div id="backgroundContainer">
+
+    <!-- Header -->
+    <header>
+        <div id="logoPart">
+            <a href="index.html"><img src="assets/img/logo_orinoco.jpg" alt="Logo Orinoco - créateur d'ours en peluche"></a>
+        </div>
+        <nav aria-label="Menu de navigation principal">
+            <button id="mobileOnly" aria-expanded="false" aria-controls="navigationMenu" aria-label="Bouton de menu de navigation déroulable">
+                <svg width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M16 132h416c8.837 0 16-7.163 16-16V76c0-8.837-7.163-16-16-16H16C7.163 60 0 67.163 0 76v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16z"/></svg>
+            </button>
+            <ul id="navigationMenu">
+                <li><a aria-label="Bouton d'accès à la page d'accueil" href="index.html">Accueil</a></li>
+                <li><a aria-label="Bouton d'accès au panier" href="panier.html">Panier</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Contenu du panier et formulaire de commande -->
+    <main>
+        <div id="cartSection">
+            <h1>Merci Manon !</h1>
+            <p> Votre commande n°12345 a bien été enregistrée.</p>
+            <h2>Récapitulatif de la commande</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Libellé produit</th>
+                        <th>Quantité</th>
+                        <th>Prix TTC</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Nounours 1</td>
+                        <td>1</td>
+                        <td>25 €</td>
+                    </tr>
+                    <tr>
+                        <td>Nounours 2</td>
+                        <td>2</td>
+                        <td>50 €</td>
+                    </tr>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="2">Montant total TTC</td>
+                        <td>75 €</td>
+                    </tr>
+                </tfoot>
+            </table>
+            <p>Un email de confirmation vous a été envoyé à l'adresse mail manon.dufour95@gmail.com</p>
+            <p>Des questions ? Pour toute demande, contactez-nous au 01.02.03.04.05 ou par mail.</p>
+        </div>
+    </main>
+
+
+    <!-- Footer -->
+    <footer>
+        <div id="socialPart">
+            <a aria-label="Logo Twitter cliquable" href="#"><i class="fab fa-twitter fa-2x"></i></a>
+            <a aria-label="Logo Facebook cliquable" href="#"><i class="fab fa-facebook fa-2x"></i></a>
+            <a aria-label="Logo Instagram cliquable" href="#"><i class="fab fa-instagram fa-2x"></i></a>
+        </div>
+        <ul>
+                <li><a href="#">A propos</a></li>
+                <li><a href="#">Nous contacter</a></li>
+        </ul>
+    </footer>
+</div>
+
+<script src="assets/js/cartManager.js"></script>
+<script src="assets/js/cart.js"></script>
+</body>
+</html>
