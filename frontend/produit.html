@@ -18,41 +18,37 @@
 </head>
 
 <body>
-    <div id="try">
+    <div id="backgroundContainer">
 
     <!-- Header -->
     <header>
         <div id="logoPart">
             <a href="index.html"><img src="assets/img/logo_orinoco.jpg" alt="Logo Orinoco - créateur d'ours en peluche"></a>
         </div>
-        <nav>
-            <button id="mobileOnly">
+        <nav aria-label="Menu de navigation principal">
+            <button id="mobileOnly" aria-expanded="false" aria-controls="navigationMenu" aria-label="Bouton de menu de navigation déroulable">
                 <svg width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M16 132h416c8.837 0 16-7.163 16-16V76c0-8.837-7.163-16-16-16H16C7.163 60 0 67.163 0 76v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16z"/></svg>
             </button>
-            <ul>
+            <ul id="navigationMenu">
                 <li><a aria-label="Bouton d'accès à la page d'accueil" href="index.html">Accueil</a></li>
                 <li><a aria-label="Bouton d'accès au panier" href="panier.html">Panier</a></li>
             </ul>
         </nav>
     </header>
 
-    <!-- Contenu du panier et formulaire de commande -->
+    <!-- Contenu principal - Présentation de l'article sélectionné -->
     <main>
-        <div id="cartSection">
-            </div>
-
-
-
-        </div>
+        <div id="productSection">
+        </div>       
     </main>
 
 
-    <!-- Footer -->
+    <!-- Footer --> 
     <footer>
         <div id="socialPart">
-            <a aria-label="Logo Twitter cliquable" href="#"><i class="fab fa-twitter fa-2x"></i></a>
-            <a aria-label="Logo Facebook cliquable" href="#"><i class="fab fa-facebook fa-2x"></i></a>
-            <a aria-label="Logo Instagram cliquable" href="#"><i class="fab fa-instagram fa-2x"></i></a>
+            <a aria-label="Logo Twitter cliquable" href="#"><i class="fab fa-twitter fa-2x" title="Logo cliquable : Twitter"></i></a>
+            <a aria-label="Logo Facebook cliquable" href="#"><i class="fab fa-facebook fa-2x" title="Logo cliquable : Facebook"></i></a>
+            <a aria-label="Logo Instagram cliquable" href="#"><i class="fab fa-instagram fa-2x" title="Logo cliquable : Instagram"></i></a>
         </div>
         <ul>
                 <li><a href="#">A propos</a></li>
@@ -62,7 +58,7 @@
 </div>
 
 <script src="assets/js/cartManager.js"></script>
-<script src="assets/js/product.js"></script>
+<script src="assets/js/product.js"></script> 
 
 </body>
 </html>

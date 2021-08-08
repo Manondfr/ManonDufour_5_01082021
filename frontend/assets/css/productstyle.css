@@ -10,6 +10,76 @@ a {
   text-decoration: none;
 }
 
+h1, h2 {
+  font-family: "Satisfy";
+  margin: auto;
+}
+
+h1 {
+  font-size: 1.6em;
+  width: 60%;
+  padding: 10px 0;
+}
+
+@media all and (min-width: 993px) {
+  h1 {
+    width: 70%;
+  }
+}
+
+h2 {
+  font-size: 1.2em;
+  padding-top: 40px;
+  margin: 50px 20px 0px 20px;
+}
+
+p {
+  margin-top: 10px;
+  padding: 0;
+}
+
+button {
+  background-color: #936884;
+  color: white;
+  height: 50px;
+  width: 55%;
+  border-radius: 25px;
+  margin: 5px 0 15px 0;
+  cursor: pointer;
+  position: relative;
+  border: none;
+  font-size: 1.2em;
+  font-family: "Satisfy";
+}
+
+@media all and (min-width: 483px) {
+  button {
+    width: 220px;
+  }
+}
+
+button:hover::after {
+  opacity: 0.2;
+}
+
+button::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: #c9b2c1;
+  color: white;
+  border: none;
+  border-radius: 25px;
+  opacity: 0;
+  -webkit-transition: opacity 250ms;
+  transition: opacity 250ms;
+  -webkit-box-shadow: 2px 2px 10px #936884;
+          box-shadow: 2px 2px 10px #936884;
+}
+
 header {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -62,12 +132,12 @@ header a {
   }
 }
 
-nav ul {
+#navigationMenu {
   display: none;
 }
 
 @media all and (min-width: 483px) {
-  nav ul {
+  #navigationMenu {
     display: initial;
     display: -webkit-box;
     display: -ms-flexbox;
@@ -79,7 +149,7 @@ nav ul {
   }
 }
 
-nav ul li {
+#navigationMenu li {
   color: white;
 }
 
@@ -95,31 +165,7 @@ nav ul li {
   }
 }
 
-section {
-  text-align: center;
-}
-
-main {
-  -webkit-clip-path: inset(5% 10% 5% 10%);
-          clip-path: inset(5% 10% 5% 10%);
-  margin: 0;
-  border: white solid 1px;
-}
-
-#cartSection {
-  background-color: rgba(255, 255, 255, 0.8);
-  text-align: center;
-  padding: 50px 20px 30px 20px;
-  min-height: 500px;
-}
-
-@media all and (min-width: 993px) {
-  #cartSection {
-    border-radius: 20%;
-  }
-}
-
-#try {
+#backgroundContainer {
   background-image: url(../img/teddy-5091798.jpg);
   background-attachment: fixed;
   background-size: cover;
@@ -127,77 +173,87 @@ main {
 }
 
 @media all and (min-width: 993px) {
-  #try {
+  #backgroundContainer {
     background-position-x: -170px;
   }
 }
 
-h1 {
-  font-family: "Satisfy";
-  font-size: 1.6em;
-  width: 60%;
-  margin: auto;
-  padding: 10px 0;
+#productSection {
+  background-color: rgba(255, 255, 255, 0.8);
+  text-align: center;
+  padding: 50px 20px 30px 20px;
+  margin: 15px 15px 35px 15px;
 }
 
 @media all and (min-width: 993px) {
-  h1 {
-    width: 70%;
+  #productSection {
+    width: 80%;
+    margin: 35px auto;
+    max-width: 1000px;
   }
 }
 
-h2 {
-  font-family: "Satisfy";
-  font-size: 1.2em;
-  margin: auto;
-  padding-top: 40px;
-  margin: 50px 20px 0px 20px;
-}
-
-p {
-  margin-top: 10px;
-  padding: 0;
-}
-
-button {
-  background-color: #936884;
-  color: white;
-  height: 50px;
-  width: 55%;
-  border-radius: 25px;
-  cursor: pointer;
+#teddyPresentation {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
   position: relative;
-  border: none;
-  font-size: 1.2em;
-  font-family: "Satisfy";
+}
+
+#teddyPresentation img {
+  -webkit-clip-path: inset(0 10% 0 10% round 10%);
+          clip-path: inset(0 10% 0 10% round 10%);
 }
 
 @media all and (min-width: 483px) {
-  button {
-    width: 220px;
+  #teddyPresentation img {
+    width: 70%;
+    max-width: 600px;
+    margin: auto;
   }
 }
 
-button:hover::after {
-  opacity: 0.2;
+#teddyPresentation__info {
+  font-size: 0.8em;
+  width: 70%;
+  margin: auto;
 }
 
-button::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  background-color: #c9b2c1;
-  color: white;
-  border: none;
-  border-radius: 25px;
-  opacity: 0;
-  -webkit-transition: opacity 250ms;
-  transition: opacity 250ms;
-  -webkit-box-shadow: 2px 2px 10px #936884;
-          box-shadow: 2px 2px 10px #936884;
+@media all and (min-width: 483px) {
+  #teddyPresentation__info {
+    font-size: 0.9em;
+    width: 60%;
+  }
+}
+
+form p {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  width: 70%;
+  margin: auto;
+  font-size: 0.8em;
+}
+
+@media all and (min-width: 483px) {
+  form p {
+    margin-top: 25px;
+    font-size: 0.9em;
+    width: 80%;
+  }
+}
+
+form p select {
+  width: 30%;
+  margin: 10px auto;
 }
 
 footer {
@@ -239,30 +295,5 @@ i {
 
 i:hover {
   color: #573e4e;
-}
-
-#teddyPresentation {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  position: relative;
-  margin: 0 150px;
-}
-
-#teddyPresentation img {
-  position: absolute;
-  left: 0;
-  width: 55%;
-  -webkit-clip-path: ellipse(45% 50% at 50% 50%);
-          clip-path: ellipse(45% 50% at 50% 50%);
-}
-
-#teddyPresentation__info {
-  text-align: center;
-  border: red solid 1px;
-  position: absolute;
-  right: 0;
-  width: 45%;
-  height: 400px;
 }
 /*# sourceMappingURL=productstyle.css.map */

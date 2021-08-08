@@ -29,8 +29,82 @@ body
 
 a
 {
-    color:black;
+    color:black; 
     text-decoration:none;
+}
+
+h1, h2
+{
+    font-family:map-get($map: $font-family, $key: headings);
+    margin: auto;
+}
+
+h1
+{
+
+    font-size: map-get($map: $font-size, $key: headings);
+    width:60%;
+    padding:10px 0;
+    @include desktopstyle() {
+        width:70%;
+    }
+}
+
+h2
+{
+    font-size: map-get($map: $font-size, $key: heading_h2);
+    padding-top:40px;
+    margin:50px 20px 0px 20px;
+}
+
+p
+{
+    margin-top:10px;
+    padding:0;
+}
+
+button
+{
+    background-color:$button-color;
+    color:white;
+    height:50px;
+    width:55%;
+    border-radius:25px;
+    margin:5px 0 15px 0;
+    cursor:pointer;
+    position:relative;
+    border:none;
+    font-size:map-get($map: $font-size, $key: button);
+    font-family: map-get($map: $font-family, $key: button);
+    @include tabletstyle() {
+        width:220px;
+    }
+
+
+    &:hover
+    {
+        &::after
+        {
+            opacity:0.2;
+        }
+    }
+
+    &::after
+    {
+        content:"";
+        position:absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;  
+        left: 0;
+        background-color: lighten($button-color,25%);
+        color:white;
+        border:none;
+        border-radius:25px;
+        opacity:0;
+        transition: opacity 250ms;
+        box-shadow: 2px 2px 10px $button-color;
+    }
 }
 
 // Header
@@ -76,7 +150,7 @@ header
     }
 }
 
-nav ul
+#navigationMenu
 {
     display:none;
     @include tabletstyle() {
@@ -102,33 +176,8 @@ nav ul
     }
 }
 
-// Bannière principale
-section
-{
-    text-align:center;
-}
-
-main
-{
-    clip-path: inset(5% 10% 5% 10%);
-    margin:0;
-    border:white solid 1px;
-}
-
-#cartSection
-{
-    background-color: rgba(255, 255, 255, 0.8);
-    text-align: center;
-    padding:50px 20px 30px 20px;
-    min-height:500px;
-    @include desktopstyle() {
-        border-radius:20%;
-    }
-}
-
-
-
-#try
+// Contenu principal - Présentation de l'article sélecitonné
+#backgroundContainer
 {
     background-image: url(../img/teddy-5091798.jpg);
     background-attachment: fixed;
@@ -139,73 +188,66 @@ main
     }
 }
 
-h1
+#productSection
 {
-    font-family:map-get($map: $font-family, $key: headings);
-    font-size: map-get($map: $font-size, $key: headings);
-    width:60%;
-    margin: auto;
-    padding:10px 0;
+    background-color: rgba(255, 255, 255, 0.8);
+    text-align: center;
+    padding:50px 20px 30px 20px;
+    margin:15px 15px 35px 15px;
     @include desktopstyle() {
-        width:70%;
+        width:80%;
+        margin:35px auto;
+        max-width:1000px;
     }
 }
 
-h2
-{
-    font-family:map-get($map: $font-family, $key: headings);
-    font-size: map-get($map: $font-size, $key: heading_h2);
-    margin:auto;
-    padding-top:40px;
-    margin:50px 20px 0px 20px;
-}
 
-p
+// Spécifique page produit
+#teddyPresentation
 {
-    margin-top:10px;
-    padding:0;
-}
-
-button
-{
-    background-color:$button-color;
-    color:white;
-    height:50px;
-    width:55%;
-    border-radius:25px;
-    cursor:pointer;
+    display:flex;
+    flex-direction:column;
     position:relative;
-    border:none;
-    font-size:map-get($map: $font-size, $key: button);
-    font-family: map-get($map: $font-family, $key: button);
-    @include tabletstyle() {
-        width:220px;
-    }
 
-
-    &:hover
+    img
     {
-        &::after
-        {
-            opacity:0.2;
+        clip-path: inset(0 10% 0 10% round 10%);
+        @include tabletstyle() {
+            width:70%;
+            max-width:600px;
+            margin:auto;
         }
     }
 
-    &::after
+    &__info
     {
-        content:"";
-        position:absolute;
-        top: 0;
-        right: 0;
-        bottom: 0;  
-        left: 0;
-        background-color: lighten($button-color,25%);
-        color:white;
-        border:none;
-        border-radius:25px;
-        opacity:0;
-        transition: opacity 250ms;
-        box-shadow: 2px 2px 10px $button-color;
+        font-size:0.8em;
+        width:70%;
+        margin:auto;
+        @include tabletstyle() {
+            font-size:map-get($map: $font-size, $key: text);
+            width:60%;
+        }
+    }
+}
+
+form p
+{
+    display:flex;
+    flex-direction:column;
+    width:70%;
+    margin:auto;
+    font-size:0.8em;
+    @include tabletstyle() {
+        margin-top:25px;
+        font-size:map-get($map: $font-size, $key: text);
+        width:80%;
+    }
+
+    select
+    {
+        width:30%;
+        margin:10px auto;
     }
 }
 
@@ -248,31 +290,5 @@ i
     &:hover
     {
         color:darken($color: $button-color, $amount: 20%);
-    }
-}
-
-// Spécifique page produit
-#teddyPresentation
-{
-    display:flex;
-    position:relative;
-    margin: 0 150px;
-
-    img
-    {
-        position:absolute;
-        left:0;
-        width:55%;
-        clip-path: ellipse(45% 50% at 50% 50%);
-    }
-
-    &__info
-    {
-        text-align: center;
-        border: red solid 1px;
-        position:absolute;
-        right:0;
-        width:45%;
-        height:400px;
     }
 }

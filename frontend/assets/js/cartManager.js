@@ -17,6 +17,8 @@ function saveCart(shoppingCartItems) {
     localStorage.setItem("shoppingCartItems", JSON.stringify(shoppingCartItems));
 }
 
+/*
 function getCartItemsId(){
     return getShoppingCartItems().map(cartItems => cartItems._id);
 }
+*/

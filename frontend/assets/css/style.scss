@@ -33,6 +33,79 @@ a
     text-decoration:none;
 }
 
+h1, h2
+{
+    font-family:map-get($map: $font-family, $key: headings);
+    font-size: map-get($map: $font-size, $key: headings);
+    margin: auto;
+}
+
+h1
+{
+    width:60%;
+    padding:10px 0;
+    @include tabletstyle() {
+        width:70%;
+    }
+}
+
+h2
+{
+    margin:auto;
+    margin-top:50px;
+    @include tabletstyle() {
+        padding-top:40px;
+    }
+}
+
+p
+{
+    margin:10px 0 0 0;
+    padding:0;
+}
+
+button
+{
+    background-color:$button-color;
+    color:white;
+    height:50px;
+    width:55%;
+    border-radius:25px;
+    cursor:pointer;
+    position:relative;
+    border:none;
+    font-size:map-get($map: $font-size, $key: button);
+    font-family: map-get($map: $font-family, $key: button);
+    @include tabletstyle() {
+        width:220px;
+    }
+
+    &:hover
+    {
+        &::after
+        {
+            opacity:0.2;
+        }
+    }
+
+    &::after 
+    {
+        content:"";
+        position:absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;  
+        left: 0;
+        background-color: lighten($button-color,25%);
+        color:white;
+        border:none;
+        border-radius:25px;
+        opacity:0;
+        transition: opacity 250ms;
+        box-shadow: 2px 2px 10px $button-color;
+    }
+}
+
 // Header
 header
 {
@@ -76,7 +149,7 @@ header
     }
 }
 
-nav ul
+#navigationMenu
 {
     display:none;
     @include tabletstyle() {
@@ -103,6 +176,17 @@ nav ul
 }
 
 // Bannière principale
+#backgroundContainer
+{
+    background-image: url(../img/teddy-5091798.jpg);
+    background-attachment: fixed;
+    background-size:cover;
+    background-position-x: -100px;
+    @include desktopstyle() {
+        background-position-x: -170px;
+    }
+}
+
 section
 {
     text-align:center;
@@ -125,20 +209,20 @@ section
         align-items:flex-end;
         padding-right:100px;
     }
-}
 
-#heroSection_blank
-{
-    background-color: rgba(255, 255, 255, 0.6);
-    padding:20px 20px 30px 20px;
-    margin:0px 10px 0px 10px;
-    @include tabletstyle() {
-        margin:0px 15% 0px 15%;
-        border-radius:10%;
-    }
-    @include desktopstyle() {
-        border-radius:20%;
-        margin:0px 15px 0px 0px;
+    &_blank
+    {
+        background-color: rgba(255, 255, 255, 0.6);
+        padding:20px 20px 30px 20px;
+        margin:0px 10px 0px 10px;
+        @include tabletstyle() {
+            margin:0px 15% 0px 15%;
+            border-radius:10%;
+        }
+        @include desktopstyle() {
+            border-radius:20%;
+            margin:0px 15px 0px 0px;
+        }
     }
 }
 
@@ -153,90 +237,6 @@ section
     }
 }
 
-#try
-{
-    background-image: url(../img/teddy-5091798.jpg);
-    background-attachment: fixed;
-    background-size:cover;
-    background-position-x: -100px;
-    @include desktopstyle() {
-        background-position-x: -170px;
-    }
-}
-
-h1
-{
-    font-family:map-get($map: $font-family, $key: headings);
-    font-size: map-get($map: $font-size, $key: headings);
-    width:60%;
-    margin: auto;
-    padding:10px 0;
-    @include tabletstyle() {
-        width:70%;
-    }
-}
-
-h2
-{
-    font-family:map-get($map: $font-family, $key: headings);
-    font-size: map-get($map: $font-size, $key: headings);
-    margin:auto;
-    margin-top:50px;
-    @include tabletstyle() {
-        padding-top:40px;
-    }
-
-}
-
-p
-{
-    margin:0;
-    margin-top:10px;
-    padding:0;
-}
-
-button
-{
-    background-color:$button-color;
-    color:white;
-    height:50px;
-    width:55%;
-    border-radius:25px;
-    cursor:pointer;
-    position:relative;
-    border:none;
-    font-size:map-get($map: $font-size, $key: button);
-    font-family: map-get($map: $font-family, $key: button);
-    @include tabletstyle() {
-        width:220px;
-    }
-
-
-    &:hover
-    {
-        &::after
-        {
-            opacity:0.2;
-        }
-    }
-
-    &::after
-    {
-        content:"";
-        position:absolute;
-        top: 0;
-        right: 0;
-        bottom: 0;  
-        left: 0;
-        background-color: lighten($button-color,25%);
-        color:white;
-        border:none;
-        border-radius:25px;
-        opacity:0;
-        transition: opacity 250ms;
-        box-shadow: 2px 2px 10px $button-color;
-    }
-}
 
 // Affichage des Teddy
 .mainSection__items
@@ -261,7 +261,6 @@ button
         min-width:200px;
         margin:50px 30px;
     }
-
 
     img
     {
@@ -293,8 +292,6 @@ button
         position:relative;
     }
 }
-
-
 
 
 //Footer

@@ -4,6 +4,7 @@ class Article {
     }
 }
 
+/*
 fetch("http://localhost:3000/api/teddies/",
         {
             "method": "POST",
@@ -31,3 +32,4 @@ fetch("http://localhost:3000/api/teddies/",
                                                                     `
     };
 })
+*/

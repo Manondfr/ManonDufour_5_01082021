@@ -6,20 +6,19 @@ class Article {
 
 let urlToFetch = "http://localhost:3000/api/teddies/" + window.location.href.slice(window.location.href.indexOf("=") + 1);
 
-console.log(urlToFetch);
-
 fetch(urlToFetch)
 .then( data => data.json())
 .then( jsonArticle => {
     let article = new Article(jsonArticle);
-    document.querySelector("#cartSection").innerHTML += `   <h1>${article.name}</h1>
+    document.querySelector("#productSection").innerHTML += `   <h1>${article.name}</h1>
                                                             <div id="teddyPresentation">
-                                                                <img src="${article.imageUrl}" alt="Photo du teddy">
+                                                                <img src="${article.imageUrl}" alt="Photo de l'article ${article.name}">
                                                                 <div id="teddyPresentation__info">
                                                                     <p>${article.price/100} €</p>
                                                                     <p>${article.description}</p>
-                                                                <div id="teddyPresentation__infoCart">
-                                                                    <form method="POST" action="#">
+                                                                </div>
+                                                                <div>
+                                                                    <form method="POST" action="#" aria-label="Choix de la couleur de l'article">
                                                                         <p>
                                                                             <label for="colors">Quelle couleur préférez-vous pour votre nouveau compagnon ?</label>
                                                                             <select name="colors" id="colors">
