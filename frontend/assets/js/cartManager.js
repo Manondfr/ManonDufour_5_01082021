@@ -11,6 +11,14 @@ function removeOfCart(articlesId) {
     saveCart(shoppingCartItems);
 }
 
+function removeOne(articlesId) {
+    let shoppingCartItems = getShoppingCartItems();
+    let elementToRemove = shoppingCartItems.find(article => article == articlesId);
+    let elementtoRemoveIndex = shoppingCartItems.indexOf(elementToRemove);
+    shoppingCartItems.splice(elementtoRemoveIndex, 1);
+    saveCart(shoppingCartItems);
+}
+
 
 function getShoppingCartItems(){
     let shoppingCartItems = localStorage.getItem("shoppingCartItems");
