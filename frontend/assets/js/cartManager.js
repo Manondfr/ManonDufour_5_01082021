@@ -4,6 +4,14 @@ function addToCart(articlesId) {
     saveCart(shoppingCartItems);
 }
 
+
+function removeOfCart(articlesId) {
+    let shoppingCartItems = getShoppingCartItems();
+    shoppingCartItems = shoppingCartItems.filter(shoppingCartItem => shoppingCartItem !== articlesId);
+    saveCart(shoppingCartItems);
+}
+
+
 function getShoppingCartItems(){
     let shoppingCartItems = localStorage.getItem("shoppingCartItems");
     if(shoppingCartItems == null) {
@@ -17,8 +25,16 @@ function saveCart(shoppingCartItems) {
     localStorage.setItem("shoppingCartItems", JSON.stringify(shoppingCartItems));
 }
 
-/*
-function getCartItemsId(){
-    return getShoppingCartItems().map(cartItems => cartItems._id);
+function countOccurences(articlesId) {
+    let items = getShoppingCartItems();
+    let occurences = 0;
+    for(item of items) {
+        if (item == articlesId) {
+            occurences ++;
+        }       
+    }
+    return occurences;
 }
-*/
+
+
+
