@@ -14,37 +14,6 @@ class Contact {
     } 
 }
 
-/*
-let contact = new Contact("blabla", "blabla", "1 rue", "soissons", "manon@gmail.Com");
-let products = getShoppingCartItems();
-
-console.log(JSON.stringify(contact));
-
-let body = {
-    "contact" : {
-        "firstName" : contact.firstName,
-        "lastName" : contact.lastName,
-        "address" : contact.address,
-        "city" : contact.city,
-        "email" : contact.email,
-
-    },
-    "products" : products,
-};
-
-
-fetch("http://localhost:3000/api/teddies/order", {
-    "method" : "POST",
-    headers: {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json'
-    },
-    body : JSON.stringify(body),
-});
-*/
-
-
-
 
 
 fetch("http://localhost:3000/api/teddies/")
@@ -86,6 +55,11 @@ fetch("http://localhost:3000/api/teddies/")
 
     document.querySelectorAll(".binSvg").forEach(binButton => {
     binButton.addEventListener("click", function() {
+        let totalPriceOfItem = this.parentElement.parentElement.lastChild.previousSibling.textContent;
+        totalPriceOfItem = Number(totalPriceOfItem.replace(/[^\d]/g, ""));
+        let totalPriceOfItems = document.querySelector("#totalPriceCart").textContent;
+        totalPriceOfItems = Number(totalPriceOfItems.replace(/[^\d]/g, ""));
+        document.querySelector("#totalPriceCart").textContent = `Montant total TTC : ${totalPriceOfItems -= totalPriceOfItem} €`;
         removeOfCart(this.dataset.id);
         this.parentElement.parentElement.innerHTML = ``;
         let cartIcon = document.querySelector("#cartIcon");
@@ -98,11 +72,16 @@ fetch("http://localhost:3000/api/teddies/")
             document.querySelector("span").textContent = `${cartQuantity}`;
             document.querySelector("span").style.display = "initial";
         };
-
     })
 })
     document.querySelectorAll(".minusSign").forEach(minusSign => {
     minusSign.addEventListener("click", function() {
+        let totalPriceOfItem = this.parentElement.parentElement.lastChild.previousSibling.textContent;
+        totalPriceOfItem = Number(totalPriceOfItem.replace(/[^\d]/g, ""));
+        let totalPriceOfItems = document.querySelector("#totalPriceCart").textContent;
+        totalPriceOfItems = Number(totalPriceOfItems.replace(/[^\d]/g, ""));
+        let priceOfItem = (totalPriceOfItem / countOccurences(this.dataset.id));
+        document.querySelector("#totalPriceCart").textContent = `Montant total TTC : ${totalPriceOfItems -= priceOfItem} €`;
         if (countOccurences(this.dataset.id) == 1) {
             removeOfCart(this.dataset.id);
             this.parentElement.parentElement.innerHTML = ``;
@@ -138,6 +117,12 @@ fetch("http://localhost:3000/api/teddies/")
     
     document.querySelectorAll(".plusSign").forEach(plusSign => {
         plusSign.addEventListener("click", function() {
+            let totalPriceOfItem = this.parentElement.parentElement.lastChild.previousSibling.textContent;
+            totalPriceOfItem = Number(totalPriceOfItem.replace(/[^\d]/g, ""));
+            let totalPriceOfItems = document.querySelector("#totalPriceCart").textContent;
+            totalPriceOfItems = Number(totalPriceOfItems.replace(/[^\d]/g, ""));
+            let priceOfItem = (totalPriceOfItem / countOccurences(this.dataset.id));
+            document.querySelector("#totalPriceCart").textContent = `Montant total TTC : ${totalPriceOfItems += priceOfItem} €`;
             addOne(this.dataset.id);
             let newOcurrence = countOccurences(this.dataset.id);
             this.previousSibling.previousSibling.setAttribute("value", newOcurrence);
@@ -155,6 +140,14 @@ fetch("http://localhost:3000/api/teddies/")
             };
         })
     })
+    let lines = document.querySelectorAll("tbody tr");
+    let totalPriceOfItems = 0;
+    for(let line of lines) {
+        let totalPriceOfItem = line.lastChild.previousSibling.textContent;
+        totalPriceOfItem = Number(totalPriceOfItem.replace(/[^\d]/g, ""));
+        totalPriceOfItems += totalPriceOfItem;
+    };
+    document.querySelector("#totalPriceCart").textContent += `${totalPriceOfItems} €`;
 })
 
 
