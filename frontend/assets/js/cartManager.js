@@ -12,13 +12,19 @@ function removeOfCart(articlesId) {
 }
 
 function removeOne(articlesId) {
-    let shoppingCartItems = getShoppingCartItems();
-    let elementToRemove = shoppingCartItems.find(article => article == articlesId);
-    let elementtoRemoveIndex = shoppingCartItems.indexOf(elementToRemove);
-    shoppingCartItems.splice(elementtoRemoveIndex, 1);
+    let array = getShoppingCartItems();
+    let elementToRemove = array.find(article => article == articlesId);
+    let elementtoRemoveIndex = array.indexOf(elementToRemove);
+    array.splice(elementtoRemoveIndex, 1);
+    let shoppingCartItems = array;
     saveCart(shoppingCartItems);
 }
 
+function addOne(articlesId) {
+    let shoppingCartItems = getShoppingCartItems();
+    shoppingCartItems.push(articlesId);
+    saveCart(shoppingCartItems);
+}
 
 function getShoppingCartItems(){
     let shoppingCartItems = localStorage.getItem("shoppingCartItems");
