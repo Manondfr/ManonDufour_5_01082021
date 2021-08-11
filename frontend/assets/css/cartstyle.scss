@@ -40,16 +40,16 @@ span
     right:30px;
     z-index:1;
     color:black;
-    display:none;
 
-    svg
-    {
-        position:absolute;
-        top:-3px;
-        right:-7px;
-        z-index: -1;
-        fill:$logo-color;
-    }
+}
+
+#cartIcon
+{
+    position:absolute;
+    top:9px;
+    right:24px;
+    z-index: 0;
+    fill:$logo-color;
 }
 
 // Header

@@ -18,6 +18,9 @@ $font-size:(headings:1.6em, button: 1.2em, text:0.9em, teddy_description:0.8em);
     }
 }
 
+// Keyframes
+
+
 // Balises générales
 body
 {
@@ -62,6 +65,25 @@ p
 {
     margin:10px 0 0 0;
     padding:0;
+}
+
+span
+{
+    position:absolute;
+    top:10px;
+    right:30px;
+    z-index:1;
+    color:black;
+
+}
+
+#cartIcon
+{
+    position:absolute;
+    top:9px;
+    right:24px;
+    z-index: 0;
+    fill:$logo-color;
 }
 
 button
@@ -165,6 +187,34 @@ header
     }
 }
 
+.trymenu
+{
+    width:100%;
+    height:70px;
+    margin:auto;
+    position:absolute;
+    top:50px;
+    right:0px;
+    color:black;
+    background-color: darken($button-color, 30%);
+
+    &.inactive
+    {
+        display:none;
+    }
+
+    &.active
+    {
+        display:initial;
+    }
+
+
+    li
+    {
+        padding-top:5px;
+    }
+}
+
 #mobileOnly
 {
     fill:white;
@@ -183,7 +233,7 @@ header
     background-size:cover;
     background-position-x: -100px;
     @include desktopstyle() {
-        background-position-x: -170px;
+        background-position-x: -70px;
     }
 }
 

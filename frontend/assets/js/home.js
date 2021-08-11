@@ -24,4 +24,27 @@ fetch("http://localhost:3000/api/teddies/")
                                                                     </a>
                                                                     `
     };
+    let cartIcon = document.querySelector("#cartIcon");
+    let cartQuantity = getShoppingCartItems().length;
+    if(cartQuantity === 0) {
+        cartIcon.style.display = "none";
+        document.querySelector("span").style.display = "none";
+    } else {
+        cartIcon.style.display = "initial";
+        document.querySelector("span").textContent = `${cartQuantity}`;
+        document.querySelector("span").style.display = "initial";
+    };
+    let hamburgerMenu = document.querySelector("#hamburgerMenu");
+    let dropDownMenu = document.querySelector(".trymenu");
+    console.log(dropDownMenu);
+    console.log(hamburgerMenu);
+    hamburgerMenu.addEventListener("click", function() {
+        if(dropDownMenu.classList.contains ("inactive")) {
+            dropDownMenu.classList.replace("inactive", "active");
+            console.log("blabla");
+        } else {
+            dropDownMenu.classList.replace("active", "inactive");
+            console.log("Blablou");
+    };
+})
 })

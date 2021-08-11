@@ -73,12 +73,32 @@ fetch("http://localhost:3000/api/teddies/")
         
         }
     };
-    
+    let cartIcon = document.querySelector("#cartIcon");
+    let cartQuantity = getShoppingCartItems().length;
+    if(cartQuantity === 0) {
+        cartIcon.style.display = "none";
+        document.querySelector("span").style.display = "none";
+    } else {
+        cartIcon.style.display = "initial";
+        document.querySelector("span").textContent = `${cartQuantity}`;
+        document.querySelector("span").style.display = "initial";
+    };
 
     document.querySelectorAll(".binSvg").forEach(binButton => {
     binButton.addEventListener("click", function() {
         removeOfCart(this.dataset.id);
         this.parentElement.parentElement.innerHTML = ``;
+        let cartIcon = document.querySelector("#cartIcon");
+        let cartQuantity = getShoppingCartItems().length;
+        if(cartQuantity === 0) {
+            cartIcon.style.display = "none";
+            document.querySelector("span").style.display = "none";
+        } else {
+            cartIcon.style.display = "initial";
+            document.querySelector("span").textContent = `${cartQuantity}`;
+            document.querySelector("span").style.display = "initial";
+        };
+
     })
 })
     document.querySelectorAll(".minusSign").forEach(minusSign => {
@@ -86,12 +106,32 @@ fetch("http://localhost:3000/api/teddies/")
         if (countOccurences(this.dataset.id) == 1) {
             removeOfCart(this.dataset.id);
             this.parentElement.parentElement.innerHTML = ``;
+            let cartIcon = document.querySelector("#cartIcon");
+            let cartQuantity = getShoppingCartItems().length;
+            if(cartQuantity === 0) {
+                cartIcon.style.display = "none";
+                document.querySelector("span").style.display = "none";
+            } else {
+                cartIcon.style.display = "initial";
+                document.querySelector("span").textContent = `${cartQuantity}`;
+                document.querySelector("span").style.display = "initial";
+            };
         } else {
             removeOne(this.dataset.id);
             let newOccurence = countOccurences(this.dataset.id);
             this.nextSibling.nextSibling.nextSibling.nextSibling.setAttribute("value", newOccurence);
             let totalPrice = this.parentElement.parentElement.lastChild.previousSibling;
             totalPrice.innerHTML = `${(totalPrice.dataset.price * newOccurence)/100} €`;
+            let cartIcon = document.querySelector("#cartIcon");
+            let cartQuantity = getShoppingCartItems().length;
+            if(cartQuantity === 0) {
+                cartIcon.style.display = "none";
+                document.querySelector("span").style.display = "none";
+            } else {
+                cartIcon.style.display = "initial";
+                document.querySelector("span").textContent = `${cartQuantity}`;
+                document.querySelector("span").style.display = "initial";
+            };
             }
         })
     }) 
@@ -103,6 +143,16 @@ fetch("http://localhost:3000/api/teddies/")
             this.previousSibling.previousSibling.setAttribute("value", newOcurrence);
             let totalPrice = this.parentElement.parentElement.lastChild.previousSibling;
             totalPrice.innerHTML = `${(totalPrice.dataset.price * newOcurrence)/100} €`;
+            let cartIcon = document.querySelector("#cartIcon");
+            let cartQuantity = getShoppingCartItems().length;
+            if(cartQuantity === 0) {
+                cartIcon.style.display = "none";
+                document.querySelector("span").style.display = "none";
+            } else {
+                cartIcon.style.display = "initial";
+                document.querySelector("span").textContent = `${cartQuantity}`;
+                document.querySelector("span").style.display = "initial";
+            };
         })
     })
 })

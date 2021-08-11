@@ -17,14 +17,13 @@ span {
   right: 30px;
   z-index: 1;
   color: black;
-  display: none;
 }
 
-span svg {
+#cartIcon {
   position: absolute;
-  top: -3px;
-  right: -7px;
-  z-index: -1;
+  top: 9px;
+  right: 24px;
+  z-index: 0;
   fill: #f4e9f2;
 }
 

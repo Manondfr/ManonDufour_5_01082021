@@ -37,9 +37,31 @@ fetch(urlToFetch)
         parentElement.appendChild(childElement);
         childElement.textContent= article.colors[[i]];    
     };
+    let cartIcon = document.querySelector("#cartIcon");
+    let cartQuantity = getShoppingCartItems().length;
+    if(cartQuantity === 0) {
+        cartIcon.style.display = "none";
+        document.querySelector("span").style.display = "none";
+    } else {
+        cartIcon.style.display = "initial";
+        document.querySelector("span").textContent = `${cartQuantity}`;
+        document.querySelector("span").style.display = "initial";
+    };
     document.querySelectorAll(".addToCartButton").forEach(cartButton => {
         cartButton.addEventListener("click", function() {
             addToCart(this.dataset.id);
+            document.querySelector(".addToCartButton").textContent = " ✓";
+            document.querySelector(".addToCartButton").style.fontSize = "1.5em";
+            document.querySelector("#cartIcon").style.display = "initial";
+            let cartQuantity = getShoppingCartItems().length;
+            document.querySelector("span").textContent = `${cartQuantity}`;
+            document.querySelector("span").style.display = "initial";
+            document.querySelector("span").style.color = "black";
+            setTimeout(function() {
+                document.querySelector(".addToCartButton").textContent = "Ajouter au panier";
+                document.querySelector(".addToCartButton").style.fontSize = "1.2em";
+                document.querySelector(".addToCartButton").style.backgroundColor = "#936884";                
+            }, 600);
         })
     })
 })
