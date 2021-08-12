@@ -38,7 +38,8 @@ fetch(urlToFetch)
         childElement.textContent= article.colors[[i]];    
     };
     let cartIcon = document.querySelector("#cartIcon");
-    let cartQuantity = getShoppingCartItems().length;
+    let shoppingCartItems = getShoppingCartItems();
+    let cartQuantity = shoppingCartItems[0].length;
     if(cartQuantity === 0) {
         cartIcon.style.display = "none";
         document.querySelector("span").style.display = "none";
@@ -49,11 +50,14 @@ fetch(urlToFetch)
     };
     document.querySelectorAll(".addToCartButton").forEach(cartButton => {
         cartButton.addEventListener("click", function() {
-            addToCart(this.dataset.id);
+            let select = document.querySelector("#colors");
+            let userChoice = select.value;
+            addToCart(this.dataset.id, userChoice);
             document.querySelector(".addToCartButton").textContent = " ✓";
             document.querySelector(".addToCartButton").style.fontSize = "1.5em";
             document.querySelector("#cartIcon").style.display = "initial";
-            let cartQuantity = getShoppingCartItems().length;
+            let shoppingCartItems = getShoppingCartItems();
+            let cartQuantity = shoppingCartItems[0].length;
             document.querySelector("span").textContent = `${cartQuantity}`;
             document.querySelector("span").style.display = "initial";
             document.querySelector("span").style.color = "black";

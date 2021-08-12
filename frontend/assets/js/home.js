@@ -25,7 +25,8 @@ fetch("http://localhost:3000/api/teddies/")
                                                                     `
     };
     let cartIcon = document.querySelector("#cartIcon");
-    let cartQuantity = getShoppingCartItems().length;
+    let shoppingCartItems = getShoppingCartItems();
+    let cartQuantity = shoppingCartItems[0].length;
     if(cartQuantity === 0) {
         cartIcon.style.display = "none";
         document.querySelector("span").style.display = "none";
