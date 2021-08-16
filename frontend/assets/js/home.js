@@ -18,7 +18,7 @@ fetch("http://localhost:3000/api/teddies/")
                                                                             </div>
                                                                             <p>${article.description}</p>
                                                                             <button class="addToCartButton">
-                                                                                Ajouter au panier
+                                                                                Découvrir ${article.name}
                                                                             </button>
                                                                         </article>
                                                                     </a>
@@ -37,12 +37,10 @@ fetch("http://localhost:3000/api/teddies/")
     };
     let hamburgerMenu = document.querySelector("#mobileOnly");
     let dropDownMenu = document.querySelector(".trymenu");
-    console.log(dropDownMenu);
-    console.log(hamburgerMenu);
     hamburgerMenu.addEventListener("click", function() {
         if(dropDownMenu.classList.contains ("inactive")) {
             dropDownMenu.classList.replace("inactive", "active");
-            hamburgerMenu.style.backgroundColor = "#392934";
+            hamburgerMenu.style.backgroundColor = "#392934e0";
             document.querySelector("svg").setAttribute("viewBox", "0 0 352 512");
             document.querySelector("svg").setAttribute("width", "23");
             document.querySelector("svg").setAttribute("height", "23");

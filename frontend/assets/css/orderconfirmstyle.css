@@ -184,7 +184,7 @@ header a {
   }
 }
 
-#cartSection {
+#confirmSection {
   background-color: rgba(255, 255, 255, 0.8);
   text-align: center;
   padding: 50px 20px 30px 20px;
@@ -192,7 +192,7 @@ header a {
 }
 
 @media all and (min-width: 993px) {
-  #cartSection {
+  #confirmSection {
     width: 80%;
     margin: 35px auto;
     max-width: 1000px;

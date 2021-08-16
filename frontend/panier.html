@@ -27,9 +27,13 @@
             <button id="mobileOnly" aria-expanded="false" aria-controls="navigationMenu" aria-label="Bouton de menu de navigation déroulable">
                 <svg width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M16 132h416c8.837 0 16-7.163 16-16V76c0-8.837-7.163-16-16-16H16C7.163 60 0 67.163 0 76v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16z"/></svg>
             </button>
+            <ul class="trymenu inactive">
+                <li><a aria-label="Bouton d'accès à la page d'accueil" aria-current="page" href="index.html">Accueil</a></li>
+                <li><a aria-label="Bouton d'accès au panier" href="panier.html">Panier</a></li>
+            </ul>
             <ul id="navigationMenu">
-                <li><a aria-label="Bouton d'accès à la page d'accueil" href="index.html">Accueil</a></li>
-                <li><a aria-label="Bouton d'accès au panier" aria-current="page" href="panier.html">Panier<span></span><svg id="cartIcon" width="23" height="23" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!-- Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8z"/></svg>
+                <li><a aria-label="Bouton d'accès à la page d'accueil"  href="index.html">Accueil</a></li>
+                <li><a aria-label="Bouton d'accès au panier" href="panier.html">Panier<span></span><svg id="cartIcon" width="23" height="23" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!-- Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8z"/></svg>
                 </a></li>
             </ul>
         </nav>
@@ -43,7 +47,7 @@
                 <table>
                     <thead>
                         <tr>
-                            <th>Article</th>
+                            <th class="imageColumn">Article</th>
                             <th>Libellé produit</th>
                             <th>Couleur</th>
                             <th>Prix unitaire</th>
@@ -56,7 +60,7 @@
                     </tbody>
                     <tfoot>
                         <tr>
-                            <td colspan="7" id="totalPriceCart">Montant total TTC : </td>
+                            <td colspan="7" id="totalPriceCart"><strong>Montant total TTC : </strong></td>
                         </tr>                       
                     </tfoot>
                 </table>  
@@ -65,7 +69,7 @@
             <h2>C'est presque terminé ! Il ne nous manque que quelques informations...</h2>
             <form>
                 <div class="formInputs">
-                    <div >
+                    <div>
                         <label for="firstName">Prénom</label><input class="formInputs__input" id="firstName" name="firstName" size="30" placeholder="André" required aria-required="true"/>
                     </div>
                     <div>

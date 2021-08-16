@@ -185,7 +185,7 @@ header
     {
         color:white;
     }
-}
+} 
 
 .trymenu
 {
@@ -197,7 +197,8 @@ header
     right:0px;
     padding : 5px 0;
     color:black;
-    background-color: darken($button-color, 30%);
+    background-color: #392934e0;
+    
 
     &.inactive
     {
@@ -207,6 +208,9 @@ header
     &.active
     {
         display:initial;
+        @include tabletstyle() {
+            display:none;
+        }
     }
 
 

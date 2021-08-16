@@ -5,8 +5,6 @@ $button-color: #936884;
 $font-family:(headings:"Satisfy", button:"Satisfy", text:"Roboto");
 $font-size:(headings:1.6em, heading_h2: 1.2em, button: 1.2em, text:0.9em);
 
-$shake-intensity : 3%;
-
 // Mixins
 @mixin tabletstyle {
     @media all and (min-width:483px){
@@ -20,15 +18,6 @@ $shake-intensity : 3%;
     }
 }
 
-// Keyframes
-@keyframes headshake {
-    25% {
-        transform: translateX($shake-intensity);
-    }
-    75% {
-        transform: translateX($shake-intensity * -1);
-    }
-}
 
 // Balises générales
 body
@@ -101,7 +90,6 @@ button
     height:50px;
     width:55%;
     border-radius:25px;
-    margin:5px 0 15px 0;
     cursor:pointer;
     position:relative;
     border:none;
@@ -136,10 +124,6 @@ button
         transition: opacity 250ms;
         box-shadow: 2px 2px 10px $button-color;
     }
-
-    &:active {
-        animation: headshake 100ms cubic-bezier(.4,.1,.6,.9) 2;
-    }
 }
 
 // Header
@@ -148,7 +132,7 @@ header
     display:flex;
     justify-content: space-between;
     align-items: center;
-    padding:0 20px 0px 0px;
+    padding:0 0px 0px 0px;
     @include tabletstyle() {
         padding:0 50px 0px 0px;
     }
@@ -201,15 +185,58 @@ header
     }
 }
 
+.trymenu
+{
+    width:100%;
+    height:75px;
+    margin:auto;
+    position:absolute;
+    top:50px;
+    right:0px;
+    padding : 5px 0;
+    color:black;
+    background-color: #392934e0;
+
+    &.inactive
+    {
+        display:none;
+    }
+
+    &.active
+    {
+        display:initial;
+        @include tabletstyle() {
+            display:none;
+        }
+    }
+
+
+    li
+    {
+        padding:5px 0;
+    }
+}
+
 #mobileOnly
 {
     fill:white;
     background-color: transparent;
     padding-top:15px;
+    width:80px;
+    border-radius: 0;
     @include tabletstyle() {
         display:none;
     }
+
+    &:hover
+    {
+        &::after
+        {
+            opacity:0;
+        }
+    }
 }
+
 
 // Contenu principal - Présentation de l'article sélecitonné
 #backgroundContainer

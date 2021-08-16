@@ -182,7 +182,7 @@ header a {
   right: 0px;
   padding: 5px 0;
   color: black;
-  background-color: #392934;
+  background-color: #392934e0;
 }
 
 .trymenu.inactive {
@@ -191,6 +191,12 @@ header a {
 
 .trymenu.active {
   display: initial;
+}
+
+@media all and (min-width: 483px) {
+  .trymenu.active {
+    display: none;
+  }
 }
 
 .trymenu li {

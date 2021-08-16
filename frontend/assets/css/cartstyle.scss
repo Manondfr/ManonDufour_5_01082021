@@ -6,6 +6,12 @@ $font-family:(headings:"Satisfy", button:"Satisfy", text:"Roboto");
 $font-size:(headings:1.6em, heading_h2: 1.2em, button: 1.2em, text:0.9em);
 
 // Mixins
+@mixin mobilestyle {
+    @media all and (max-width:482px){
+        @content;
+    }
+}
+
 @mixin tabletstyle {
     @media all and (min-width:483px){
         @content;
@@ -58,7 +64,7 @@ header
     display:flex;
     justify-content: space-between;
     align-items: center;
-    padding:0 20px 0px 0px;
+    padding:0 0px 0px 0px;
     @include tabletstyle() {
         padding:0 50px 0px 0px;
     }
@@ -111,13 +117,56 @@ nav ul
     }
 }
 
+.trymenu
+{
+    width:100%;
+    height:75px;
+    margin:auto;
+    position:absolute;
+    top:50px;
+    right:0px;
+    padding : 5px 0;
+    color:black;
+    background-color: #392934e0;
+    
+
+    &.inactive
+    {
+        display:none;
+    }
+
+    &.active
+    {
+        display:initial;
+        @include tabletstyle() {
+            display:none;
+        }
+    }
+
+
+    li
+    {
+        padding:5px 0;
+    }
+}
+
 #mobileOnly
 {
     fill:white;
     background-color: transparent;
     padding-top:15px;
+    width:80px;
+    border-radius: 0;
     @include tabletstyle() {
         display:none;
+    }
+
+    &:hover
+    {
+        &::after
+        {
+            opacity:0;
+        }
     }
 }
 
@@ -127,22 +176,15 @@ section
     text-align:center;
 }
 
-main
-{
-    clip-path: inset(5% 10% 5% 10%);
-    margin:0;
-    border:white solid 1px;
-}
-
 #cartSection
 {
     background-color: rgba(255, 255, 255, 0.8);
     text-align: center;
-    padding:50px 20px 30px 20px;
-    min-height:500px;
     position:relative;
+    width:80%;
+    margin:50px auto;
     @include desktopstyle() {
-        border-radius:20%;
+        padding:0px 20px;
     }
 }
 
@@ -163,7 +205,7 @@ h1
     font-size: map-get($map: $font-size, $key: headings);
     width:60%;
     margin: auto;
-    padding:10px 0;
+    padding:35px 0 10px 0;
     @include desktopstyle() {
         width:70%;
     }
@@ -172,10 +214,13 @@ h1
 h2
 {
     font-family:map-get($map: $font-family, $key: headings);
-    font-size: map-get($map: $font-size, $key: heading_h2);
     margin:auto;
-    padding-top:40px;
+    font-size:1.1em;
+    padding: 40px 30px 0 30px;
     margin:50px 20px 0px 20px;
+    @include desktopstyle() {
+        font-size: map-get($map: $font-size, $key: heading_h2);
+    }
 }
 
 p
@@ -194,6 +239,7 @@ button
     cursor:pointer;
     position:relative;
     border:none;
+    margin-bottom:35px;
     font-size:map-get($map: $font-size, $key: button);
     font-family: map-get($map: $font-family, $key: button);
     @include tabletstyle() {
@@ -277,33 +323,54 @@ table
     margin: 15px auto 25px auto;
     border-collapse:collapse;
 
+    tr
+    {
+            width:250px;
+            border: 0.5px $logo-color solid;
+            margin-bottom:30px;
+            font-size: 0.9em;
+            @include tabletstyle() {
+                width:350px;
+            }
+            @include desktopstyle() {
+                border:none;
+            }
+    }
+
+
     th, td
     {
-        width:150px;
+        margin:auto;
+        @include desktopstyle() {
+            width:110px;      
+        }
     }
 
     th
     {
-        background-color: $button-color;
-        color:white;
-        padding:5px 0;
-        border-bottom: 2px solid black;
-        border-top: 2px solid black;
-
-        &:nth-child(5)
-        {
-            width:30px;
+        display:none;
+        @include desktopstyle() {
+            background-color: $button-color;
+            color:white;
+            padding:5px 0;
+            border-bottom: 2px solid black;
+            border-top: 2px solid black;
+            display: table-cell;
         }
     }
 
     td
     {
-        padding:20px 0 10px 0;
-        border-bottom: 0.5px solid black;
+        border-bottom: none;
+        padding: 3px 0;   
+        @include desktopstyle() {                   
+            padding:20px 0 20px 0;
+            border-bottom: 0.5px solid black;
+        }
 
         &:nth-child(5)
         {
-            width:30px;
+            width: 100px;
         }
     }
 
@@ -315,10 +382,16 @@ table
     img
     {
         max-width:150px;
-        margin:auto;
         margin-top:5px;
+        @include tabletstyle() {
+            max-width:200px;
+        }
+        @include desktopstyle() {
+            max-width: 150px;
+        }
     }
 }
+
 
 
 
@@ -341,21 +414,42 @@ input
 
 #quantity
 {
+    margin:0;
+    font-size:0.9em;
     width:10px;
-    height:15px;
-    	/* Firefox */
+    height:18px;
+    padding-left:5px;
+    /* Firefox */
 	-moz-appearance: textfield;
 	/* Chrome */
 	&::-webkit-inner-spin-button {
 		-webkit-appearance: none;
 		margin:0;
-	}
+	}  
 	/* Opéra*/
 	&::-o-inner-spin-button {
 		-o-appearance: none;
 		margin: 0; 
 	}
+    @include tabletstyle() {
+        width:10px;
+        height:15px;
+    }
 }
+
+.quantityCell 
+{
+
+        margin:0 auto;
+        display:flex;
+        justify-content: center;
+        align-items: center;
+        @include desktopstyle() {
+            display:table-cell;
+        }
+
+}
+
 
 
 
@@ -374,12 +468,39 @@ svg
 
 .changeQuantity__item
 {
-    position:relative;
-    top:4px;
-    margin:-2px;
+    position: initial;
+    padding:3px;
+    margin:2px;
     fill:grey;
     border: black solid 0.5px;
-    padding:1px;
+    @include tabletstyle() {
+        position:relative;
+        padding:1px;
+        top:0px;
+        margin:2px;
+    }
+    @include desktopstyle() {
+        top: 4px;
+        margin:-1px;
+    }
 }
 
 
+tbody tr
+{
+        display:flex;
+        flex-direction: column;
+        @include desktopstyle() {
+            display:table-row;
+        }
+}
+
+.binSvg
+{
+    padding-top:3px;
+}
+
+#totalPriceCart
+{
+    font-weight:bold;
+}

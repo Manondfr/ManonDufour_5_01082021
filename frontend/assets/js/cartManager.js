@@ -10,40 +10,59 @@ function addToCart(articlesId, articlesColor) {
     let shoppingCartItemsColor = shoppingCartItems[1];
     shoppingCartItemsId.push(articlesId);
     shoppingCartItemsColor.push(articlesColor);
-    console.log(shoppingCartItems);
     saveCart(shoppingCartItems);
 }
 
 
+function removeOfCart(arrayUniqueId) {
+    let shoppingCartItems = getShoppingCartItems();
+    let shoppingCartItemsId = shoppingCartItems [0];
+    let shoppingCartItemsColor = shoppingCartItems [1];
+    let array = new Array();
+    while(shoppingCartItemsId.length > 0) {
+        let lineConcat = shoppingCartItemsId.splice(0, 1).concat(shoppingCartItemsColor.splice(0, 1)).join("-");
+        array.push(lineConcat);
+    }
+    array = array.filter(shoppingCartItem => shoppingCartItem !== arrayUniqueId);
+    for (arr of array) {
+        arr = arr.split("-");
+        shoppingCartItemsId.push(arr[0]);
+        shoppingCartItemsColor.push(arr[1]);
+    }
+    saveCart(shoppingCartItems);
+}
 
-
-function removeOfCart(articlesId) {
+function removeOne(arrayUniqueId) {
     let shoppingCartItems = getShoppingCartItems();
     let shoppingCartItemsId = shoppingCartItems[0];
     let shoppingCartItemsColor = shoppingCartItems[1];
-    while (shoppingCartItemsId.includes(articlesId)) {
-        let elementtoRemoveIndex = shoppingCartItemsId.indexOf(articlesId);
-        console.log(elementtoRemoveIndex);
-        shoppingCartItemsId.splice(elementtoRemoveIndex, 1);
-        shoppingCartItemsColor.splice(elementtoRemoveIndex, 1);
-        shoppingCartItemUniqueIndex.splice(elementtoRemoveIndex, 1);
-        saveCart(shoppingCartItems);
-        console.log(shoppingCartItems);
+    let array = new Array();
+    while(shoppingCartItemsId.length > 0) {
+        array.push(shoppingCartItemsId.splice(0, 1).concat(shoppingCartItemsColor.splice(0, 1)).join("-"));
     }
-}
-
-function removeOne(articlesId) {
-    let array = getShoppingCartItems();
-    let elementToRemove = array.find(article => article == articlesId);
-    let elementtoRemoveIndex = array.indexOf(elementToRemove);
-    array.splice(elementtoRemoveIndex, 1);
-    let shoppingCartItems = array;
+    let elementToRemove = array.indexOf(array.find(article => article == arrayUniqueId));
+    array.splice(elementToRemove, 1);
+    for (arr of array) {
+        shoppingCartItemsId.push(arr.split("-")[0]);
+        shoppingCartItemsColor.push(arr.split("-")[1]);
+    }
     saveCart(shoppingCartItems);
 }
 
-function addOne(articlesId) {
+function addOne(arrayUniqueId) {
     let shoppingCartItems = getShoppingCartItems();
-    shoppingCartItems.push(articlesId);
+    let shoppingCartItemsId = shoppingCartItems[0];
+    let shoppingCartItemsColor = shoppingCartItems[1];
+    let array = new Array();   
+    while(shoppingCartItemsId.length > 0) {
+        let lineConcat = shoppingCartItemsId.splice(0, 1).concat(shoppingCartItemsColor.splice(0, 1)).join("-");
+        array.push(lineConcat);
+    }
+    array.push(arrayUniqueId);
+    for (arr of array) {
+        shoppingCartItemsId.push(arr.split("-")[0]);
+        shoppingCartItemsColor.push(arr.split("-")[1]);
+    }
     saveCart(shoppingCartItems);
 }
 
@@ -59,8 +78,17 @@ function getShoppingCartItems(){
     }
 }
 
+function getOrder() {
+    let postResult = localStorage.getItem("postResult");
+    return JSON.parse(postResult);
+}
+
 function saveCart(shoppingCartItems) {
     localStorage.setItem("shoppingCartItems", JSON.stringify(shoppingCartItems));
+}
+
+function saveOrder(postResult) {
+    localStorage.setItem("postResult", JSON.stringify(postResult));
 }
 
 function countOccurences(articlesId) {
@@ -77,7 +105,7 @@ function countOccurences(articlesId) {
 
 function countOccurencesOfColor(arrayUniqueId, array) {
     let occurences = 0;
-    for (let i = 0; i< array.length; i++) {
+    for (let i = 0; i < array.length; i++) {
         if (array[i] == arrayUniqueId) {
             occurences ++;
         }
