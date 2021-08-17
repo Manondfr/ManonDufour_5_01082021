@@ -1,26 +1,35 @@
-document.querySelector("#confirmSection").innerHTML = `     <h1>Merci ${getOrder().contact.firstName} !</h1>
-                                                            <p> Votre commande n°${getOrder().orderId} a bien été enregistrée.</p>
-                                                            <h2>Récapitulatif de la commande</h2>
-                                                            <table>
-                                                                <thead>
-                                                                    <tr>
-                                                                        <th>Libellé produit</th>
-                                                                        <th>Couleur</th>
-                                                                        <th>Quantité</th>
-                                                                        <th>Prix TTC</th>
-                                                                    </tr>
-                                                                </thead>
-                                                                <tbody>
-                                                                </tbody>
-                                                                <tfoot>
-                                                                    <tr>
-                                                                        <td colspan="3">Montant total TTC</td>
-                                                                        <td id="totalPrice"></td>
-                                                                    </tr>
-                                                                </tfoot>
-                                                            </table>
-                                                            <p>Un email de confirmation vous a été envoyé à l'adresse mail ${getOrder().contact.email}</p>
-                                                            <p>Des questions ? Pour toute demande, contactez-nous au 01.02.03.04.05.</p>`;
+if ("content" in document.querySelector("template")) {
+    let template = document.querySelector("template");
+    let clone = template.content.cloneNode(true);
+    clone.querySelector("h1").textContent = `Merci ${getOrder().contact.firstName} !`;
+    clone.querySelector("p").textContent = `Votre commande n°${getOrder().orderId} a bien été enregistrée.`;
+    clone.querySelector("p:nth-child(2)").textContent = `Un email de confirmation vous a été envoyé à l'adresse mail ${getOrder().contact.email}`;
+    document.querySelector("#confirmSection").appendChild(clone);
+} else {
+    document.querySelector("#confirmSection").innerHTML = `     <h1>Merci ${getOrder().contact.firstName} !</h1>
+                                                                    <p> Votre commande n°${getOrder().orderId} a bien été enregistrée.</p>
+                                                                    <h2>Récapitulatif de la commande</h2>
+                                                                    <table>
+                                                                        <thead>
+                                                                            <tr>
+                                                                                <th>Libellé produit</th>
+                                                                                <th>Couleur</th>
+                                                                                <th>Quantité</th>
+                                                                                <th>Prix TTC</th>
+                                                                            </tr>
+                                                                        </thead>
+                                                                        <tbody>
+                                                                        </tbody>
+                                                                        <tfoot>
+                                                                            <tr>
+                                                                                <td colspan="3">Montant total TTC</td>
+                                                                                <td id="totalPrice"></td>
+                                                                            </tr>
+                                                                        </tfoot>
+                                                                    </table>
+                                                                    <p>Un email de confirmation vous a été envoyé à l'adresse mail ${getOrder().contact.email}</p>
+                                                                    <p>Des questions ? Pour toute demande, contactez-nous au 01.02.03.04.05.</p>`;
+}
 
 fetch("http://localhost:3000/api/teddies/")
 .then( data => data.json())
@@ -47,3 +56,9 @@ fetch("http://localhost:3000/api/teddies/")
         };
     }
 })
+.catch(function() {
+    document.querySelector("#confirmSection").innerHTML = "";
+    createErrorSentence("#confirmSection");
+    document.querySelector("#confirmSection p").textContent = `Une erreur est survenue. Veuillez essayer à nouveau.`;
+})
+

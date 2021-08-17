@@ -346,7 +346,7 @@ table
         }
     }
 
-    th
+    th, thead td
     {
         display:none;
         @include desktopstyle() {
@@ -412,7 +412,7 @@ input
     margin-bottom:10px;
 }
 
-#quantity
+.quantity
 {
     margin:0;
     font-size:0.9em;

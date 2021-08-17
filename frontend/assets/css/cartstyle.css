@@ -329,12 +329,12 @@ table th, table td {
   }
 }
 
-table th {
+table th, table thead td {
   display: none;
 }
 
 @media all and (min-width: 993px) {
-  table th {
+  table th, table thead td {
     background-color: #936884;
     color: white;
     padding: 5px 0;
@@ -404,7 +404,7 @@ input {
   margin-bottom: 10px;
 }
 
-#quantity {
+.quantity {
   margin: 0;
   font-size: 0.9em;
   width: 10px;
@@ -416,18 +416,18 @@ input {
   /* Opéra*/
 }
 
-#quantity::-webkit-inner-spin-button {
+.quantity::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
 
-#quantity::-o-inner-spin-button {
+.quantity::-o-inner-spin-button {
   -o-appearance: none;
   margin: 0;
 }
 
 @media all and (min-width: 483px) {
-  #quantity {
+  .quantity {
     width: 10px;
     height: 15px;
   }

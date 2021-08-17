@@ -98,6 +98,10 @@ function interactWithHamburgerMenu() {
 })
 }
 
-
+function createErrorSentence(parentElement) {
+    let errorSentence = document.createElement("p");
+    errorSentence.style.paddingBottom = "15px";
+    document.querySelector(parentElement).appendChild(errorSentence);
+}
 
 
