@@ -1,7 +1,9 @@
+// Récupération des articles du backend
 fetch("http://localhost:3000/api/teddies/")
 .then( data => data.json())
 .then( jsonListArticle => {
-    for(let jsonArticle of jsonListArticle) {
+    // Pour chaque article du backend, recherche d'une correspondance avec les produits enregistrés dans le localStorage
+        for(let jsonArticle of jsonListArticle) {
             let article = new Article(jsonArticle);
             let arrayUniqueIds = new Array();
             let shoppingCartItems = getShoppingCartItems();
@@ -11,6 +13,7 @@ fetch("http://localhost:3000/api/teddies/")
                         arrayUniqueIds.push(shoppingCartItem);
                     }
                 }
+            // Création d'un tableau arrayUniqueIds qui supprime les correspondances en double et permet donc de n'afficher qu'une seule ligne par typologie de produit
             arrayUniqueIds = Array.from(new Set(arrayUniqueIds)); 
             for (arrayUniqueId of arrayUniqueIds) {
                 if ("content" in document.querySelector("template")) {
@@ -50,13 +53,13 @@ fetch("http://localhost:3000/api/teddies/")
                                                                         <td data-price="${article.price}">${(countOccurences(arrayUniqueId) * article.price)/100} €</td>
                                                                     </tr>
                                                                 `;     
-                }      
+                }
+                // Gestion de la taille de l'input quantité selon que le nombre d'article comporte 1 ou 2 chiffres
+                if (countOccurences(arrayUniqueId) > 9) {
+                    document.querySelector(`#quantity${article.name}`).style.width = "15px";
+                };      
             }
         };
-    
-    // Affichage du nombre d'articles au panier dans le header
-    displayCartQuantity();
-
     // Calcul du prix total de l'ensemble des articles
     let lines = document.querySelectorAll("tbody tr");
     let totalPriceOfItems = 0;
@@ -66,9 +69,6 @@ fetch("http://localhost:3000/api/teddies/")
         totalPriceOfItems += totalPriceOfItem;
     }
     document.querySelector("#totalPriceCart").textContent += `${totalPriceOfItems} €`;
-
-    // Menu hamburger mobile
-    interactWithHamburgerMenu();
 
     // Mise à la corbeille de tous les articles de l'ID sélectionné
     document.querySelectorAll(".binSvg").forEach(binButton => {
@@ -100,6 +100,9 @@ fetch("http://localhost:3000/api/teddies/")
                 totalPrice.innerHTML = `${(totalPrice.dataset.price * newOccurence)/100} €`;
                 document.querySelector("#totalPriceCart").textContent = `Montant total TTC : ${totalPriceOfItems -= (totalPrice.dataset.price)/100} €`;
                 displayCartQuantity();
+                if (newOccurence < 10) {
+                    this.nextSibling.nextSibling.nextSibling.nextSibling.style.width = "10px";
+                }
             };
         })
     })
@@ -116,6 +119,9 @@ fetch("http://localhost:3000/api/teddies/")
             totalPrice.textContent = `${(totalPrice.dataset.price * newOcurrence)/100} €`;
             document.querySelector("#totalPriceCart").textContent = `Montant total TTC : ${totalPriceOfItems += (totalPrice.dataset.price/100)} €`;
             displayCartQuantity();
+            if (newOcurrence > 9) {
+                this.previousSibling.previousSibling.style.width = "15px";
+            }
         })
     })
 })
@@ -127,7 +133,13 @@ fetch("http://localhost:3000/api/teddies/")
     document.querySelector("#cartSection__items p").textContent = `Oups ! Nous n'avons pas réussi à récupérer votre panier. Veuillez actualiser la page.`;
 })
 
+// Affichage du nombre d'articles au panier dans le header
+displayCartQuantity();
 
+// Ouverture et fermeture du menu mobile
+interactWithHamburgerMenu();
+
+// Au clic sur le bouton de commande, vérification des données saisies par l'utilisateur, récupération et enregistrement de celles-ci si valides, renvoi vers la page de confirmation de commande
 document.querySelector("#orderButton").addEventListener("click", function(e) {
     e.preventDefault();
     for(let input of document.querySelectorAll("form")){

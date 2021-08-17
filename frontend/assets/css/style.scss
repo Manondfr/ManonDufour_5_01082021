@@ -18,22 +18,23 @@ $font-size:(headings:1.6em, button: 1.2em, text:0.9em, teddy_description:0.8em);
     }
 }
 
-// Keyframes
-
-
 // Balises générales
 body
 {
     margin:0;
     padding:0;
     width:auto;
-    font-family: map-get($map: $font-family, $key:text );
+    font-family: map-get($map: $font-family, $key:text);
 }
 
 a
 {
     color:black;
     text-decoration:none;
+    width:auto;
+    @include desktopstyle() {
+        max-width:250px;
+    }
 }
 
 h1, h2
@@ -45,7 +46,7 @@ h1, h2
 
 h1
 {
-    width:60%;
+    width:85%;
     padding:10px 0;
     @include tabletstyle() {
         width:70%;
@@ -91,7 +92,7 @@ button
     background-color:$button-color;
     color:white;
     height:50px;
-    width:55%;
+    width:70%;
     border-radius:25px;
     cursor:pointer;
     position:relative;
@@ -100,6 +101,7 @@ button
     font-family: map-get($map: $font-family, $key: button);
     @include tabletstyle() {
         width:220px;
+        width:55%;
     }
 
     &:hover
@@ -280,13 +282,25 @@ section
         background-color: rgba(255, 255, 255, 0.6);
         padding:20px 20px 30px 20px;
         margin:0px 10px 0px 10px;
+        height:310px;
         @include tabletstyle() {
-            margin:0px 15% 0px 15%;
+            margin:0px auto;
+            width:400px;
             border-radius:10%;
         }
         @include desktopstyle() {
             border-radius:20%;
             margin:0px 15px 0px 0px;
+
+        }
+
+        & p
+        {
+            margin:3% 0 9% 0;
+            line-height: 1.5em;
+            @include tabletstyle() {
+                margin: 20px 5% 50px 5%;
+            }
         }
     }
 }
@@ -320,11 +334,10 @@ section
     width:70%;
     max-width:300px;
     border-radius: 20%;
-    margin:50px 30px;
+    margin:50px auto;
     @include desktopstyle() {
         width:25%;
         min-width:200px;
-        margin:50px 30px;
     }
 
     img
@@ -398,4 +411,9 @@ i
     {
         color:darken($color: $button-color, $amount: 20%);
     }
+}
+
+.discoverButton
+{
+    width:100%;
 }

@@ -1,28 +1,37 @@
+// Ajout d'un article au panier depuis la page produit
 function addToCart(articlesId, articlesColor) {
     let shoppingCartItems = getShoppingCartItems();
     shoppingCartItems.push(articlesId.concat("-", articlesColor));
     saveCart(shoppingCartItems);
 }
 
-
+// Suppression totale d'un article depuis le panier
 function removeOfCart(arrayUniqueId) {
     let shoppingCartItems = getShoppingCartItems();
     shoppingCartItems = shoppingCartItems.filter(shoppingCartItem => shoppingCartItem !== arrayUniqueId);
     saveCart(shoppingCartItems);
 }
 
+// Retranchement d'un article depuis le panier (via les + et - de la colonne Quantité)
 function removeOne(arrayUniqueId) {
     let shoppingCartItems = getShoppingCartItems();
     shoppingCartItems.splice(shoppingCartItems.indexOf(shoppingCartItems.find(shoppingCartItem => shoppingCartItem == arrayUniqueId)), 1);
     saveCart(shoppingCartItems);
 }
 
+// Ajout d'un article depuis le panier (via les + et - de la colonne Quantité)
 function addOne(arrayUniqueId) {
     let shoppingCartItems = getShoppingCartItems();
     shoppingCartItems.push(arrayUniqueId);
     saveCart(shoppingCartItems);
 }
 
+// Sauvegarde des produits ajoutés au panier
+function saveCart(shoppingCartItems) {
+    localStorage.setItem("shoppingCartItems", JSON.stringify(shoppingCartItems));
+}
+
+// Récupération des produits enregistrés dans le localStorage
 function getShoppingCartItems(){
     let shoppingCartItems = localStorage.getItem("shoppingCartItems");
     if(shoppingCartItems == null) {
@@ -32,19 +41,18 @@ function getShoppingCartItems(){
     }
 }
 
+// Sauvegarde des informations de commande (contact et produits) lors du passage de celle-ci
+function saveOrder(postResult) {
+    localStorage.setItem("postResult", JSON.stringify(postResult));
+}
+
+// Récupération des informations de commande
 function getOrder() {
     let postResult = localStorage.getItem("postResult");
     return JSON.parse(postResult);
 }
 
-function saveCart(shoppingCartItems) {
-    localStorage.setItem("shoppingCartItems", JSON.stringify(shoppingCartItems));
-}
-
-function saveOrder(postResult) {
-    localStorage.setItem("postResult", JSON.stringify(postResult));
-}
-
+// Comptage de la quantité d'un article donné dans le localStorage
 function countOccurences(arrayUniqueId) {
     let shoppingCartItems = getShoppingCartItems();
     let occurences = 0;
@@ -56,7 +64,7 @@ function countOccurences(arrayUniqueId) {
     return occurences;
 }
 
-
+// Affichage du nombre d'articles au panier dans le header
 function displayCartQuantity() {
     let cartIcon = document.querySelector("#cartIcon");
     shoppingCartItems = getShoppingCartItems();
@@ -73,9 +81,15 @@ function displayCartQuantity() {
         cartIcon.style.display = "initial";
         document.querySelector("span").textContent = `${cartQuantity}`;
         document.querySelector("span").style.display = "initial";
+        if (cartQuantity > 9) {
+            document.querySelector("span").style.right = "25px";
+        } else {
+            document.querySelector("span").style.right = "30px";
+        }
     }
 }
 
+// Ouverture et fermeture du menu mobile
 function interactWithHamburgerMenu() {
     let hamburgerMenu = document.querySelector("#mobileOnly");
     let dropDownMenu = document.querySelector(".trymenu");

@@ -1,3 +1,4 @@
+// Remplissage du template HTML en utilisant les données saisies par l'utilisateur lors du passage de la commande
 if ("content" in document.querySelector("template")) {
     let template = document.querySelector("template");
     let clone = template.content.cloneNode(true);
@@ -31,10 +32,11 @@ if ("content" in document.querySelector("template")) {
                                                                     <p>Des questions ? Pour toute demande, contactez-nous au 01.02.03.04.05.</p>`;
 }
 
+// Récupération des informations des articles du backend ; pour chaque article du backend, recherche d'une correspondance avec les produits enregistrés dans le localStorage
 fetch("http://localhost:3000/api/teddies/")
 .then( data => data.json())
 .then( jsonListArticle => {
-    let totalPrice = Number(document.querySelector("#totalPrice").textContent.replace(/[^\d]/g, ""));
+    let totalPrice = Number(document.querySelector("#totalPrice").textContent.replace(/[^\d]/g, ""));    
     for(let jsonArticle of jsonListArticle) {
         let article = new Article(jsonArticle);
         let arrayUniqueIds = new Array();
@@ -45,6 +47,7 @@ fetch("http://localhost:3000/api/teddies/")
                 arrayUniqueIds.push(shoppingCartItem);
             }
         }
+        // Création d'un tableau arrayUniqueIds qui supprime les correspondances en double et permet donc de n'afficher qu'une seule ligne par typologie de produit
         arrayUniqueIds = Array.from(new Set(arrayUniqueIds));
             for (arrayUniqueId of arrayUniqueIds) {
                 document.querySelector("tbody").innerHTML += `  <tr>

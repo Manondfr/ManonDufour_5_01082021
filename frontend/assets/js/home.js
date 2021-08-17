@@ -1,3 +1,4 @@
+// Récupération des articles du backend et remplissage du template HTML pour chacun d'eux
 fetch("http://localhost:3000/api/teddies/")
 .then( data => data.json())
 .then( jsonListArticle => {
@@ -23,7 +24,7 @@ fetch("http://localhost:3000/api/teddies/")
                                                                                     <p>${article.price/100} €</p>
                                                                                 </div>
                                                                                 <p>${article.description}</p>
-                                                                                <button class="addToCartButton">
+                                                                                <button class="discoverButton">
                                                                                     Découvrir ${article.name}
                                                                                 </button>
                                                                             </article>
@@ -37,5 +38,8 @@ fetch("http://localhost:3000/api/teddies/")
     document.querySelector(".mainSection__items p").textContent = "Oups ! Nous n'avons pas retrouvé nos oursons. Rafraîchissez la page pendant que nous les cherchons.";
 });
 
+// Affichage du nombre d'articles au panier dans le header
 displayCartQuantity();
+
+// Ouverture et fermeture du menu mobile
 interactWithHamburgerMenu();

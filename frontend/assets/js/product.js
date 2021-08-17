@@ -1,5 +1,7 @@
+
 let urlToFetch = "http://localhost:3000/api/teddies/" + window.location.href.slice(window.location.href.indexOf("=") + 1);
 
+// Récupération des informations de la peluche sélectionnée et remplissage du template HTML avec ces informations
 fetch(urlToFetch)
 .then( data => data.json())
 .then( jsonArticle => {
@@ -37,12 +39,14 @@ fetch(urlToFetch)
                                                                     </div>
                                                             `
     }
+    // Création des différentes options pour la personnalisation du produit
     for (let i = 0; i < article.colors.length ; i++) {
         let parentElement = document.getElementById("colors");
         let childElement = document.createElement("option");
         parentElement.appendChild(childElement);
         childElement.textContent= article.colors[[i]];    
     };
+    // Gestion de l'ajout au panier : enregistrement localStorage du produit sélectionné, effets visuels sur le bouton d'ajout    
     document.querySelectorAll(".addToCartButton").forEach(cartButton => {
         cartButton.addEventListener("click", function() {
             let select = document.querySelector("#colors");
@@ -69,5 +73,8 @@ fetch(urlToFetch)
     document.querySelector("#productSection p").textContent = "Oups ! Nous n'avons pas retrouvé cet ourson. Rafraîchissez la page pendant que nous le cherchons.";
 });
 
+// Affichage du nombre d'articles au panier dans le header
 displayCartQuantity();
+
+// Ouverture et fermeture du menu mobile
 interactWithHamburgerMenu();
