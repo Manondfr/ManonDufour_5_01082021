@@ -1,9 +1,3 @@
-class Article {
-    constructor(jsonArticle) {
-        jsonArticle && Object.assign(this, jsonArticle);
-    }
-}
-
 let urlToFetch = "http://localhost:3000/api/teddies/" + window.location.href.slice(window.location.href.indexOf("=") + 1);
 
 fetch(urlToFetch)
@@ -37,17 +31,7 @@ fetch(urlToFetch)
         parentElement.appendChild(childElement);
         childElement.textContent= article.colors[[i]];    
     };
-    let cartIcon = document.querySelector("#cartIcon");
-    let shoppingCartItems = getShoppingCartItems();
-    let cartQuantity = shoppingCartItems[0].length;
-    if(cartQuantity === 0) {
-        cartIcon.style.display = "none";
-        document.querySelector("span").style.display = "none";
-    } else {
-        cartIcon.style.display = "initial";
-        document.querySelector("span").textContent = `${cartQuantity}`;
-        document.querySelector("span").style.display = "initial";
-    };
+    displayCartQuantity();
     document.querySelectorAll(".addToCartButton").forEach(cartButton => {
         cartButton.addEventListener("click", function() {
             let select = document.querySelector("#colors");
@@ -57,7 +41,7 @@ fetch(urlToFetch)
             document.querySelector(".addToCartButton").style.fontSize = "1.5em";
             document.querySelector("#cartIcon").style.display = "initial";
             let shoppingCartItems = getShoppingCartItems();
-            let cartQuantity = shoppingCartItems[0].length;
+            let cartQuantity = shoppingCartItems.length;
             document.querySelector("span").textContent = `${cartQuantity}`;
             document.querySelector("span").style.display = "initial";
             document.querySelector("span").style.color = "black";
@@ -68,22 +52,5 @@ fetch(urlToFetch)
             }, 600); 
         })
     });
-    let hamburgerMenu = document.querySelector("#mobileOnly");
-    let dropDownMenu = document.querySelector(".trymenu");
-    hamburgerMenu.addEventListener("click", function() {
-        if(dropDownMenu.classList.contains ("inactive")) {
-            dropDownMenu.classList.replace("inactive", "active");
-            hamburgerMenu.style.backgroundColor = "#392934e0";
-            document.querySelector("svg").setAttribute("viewBox", "0 0 352 512");
-            document.querySelector("svg").setAttribute("width", "23");
-            document.querySelector("svg").setAttribute("height", "23");
-            document.querySelector("path").setAttribute("d", "M242.72 256l100.07-100.07c12.28-12.28 12.28-32.19 0-44.48l-22.24-22.24c-12.28-12.28-32.19-12.28-44.48 0L176 189.28 75.93 89.21c-12.28-12.28-32.19-12.28-44.48 0L9.21 111.45c-12.28 12.28-12.28 32.19 0 44.48L109.28 256 9.21 356.07c-12.28 12.28-12.28 32.19 0 44.48l22.24 22.24c12.28 12.28 32.2 12.28 44.48 0L176 322.72l100.07 100.07c12.28 12.28 32.2 12.28 44.48 0l22.24-22.24c12.28-12.28 12.28-32.19 0-44.48L242.72 256z");
-        } else {
-            dropDownMenu.classList.replace("active", "inactive");
-            hamburgerMenu.style.backgroundColor = "transparent";
-            document.querySelector("svg").setAttribute("viewBox", "0 0 448 512");
-            document.querySelector("svg").setAttribute("width", "20");
-            document.querySelector("svg").setAttribute("height", "20");
-            document.querySelector("path").setAttribute("d", "M16 132h416c8.837 0 16-7.163 16-16V76c0-8.837-7.163-16-16-16H16C7.163 60 0 67.163 0 76v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16z");
-    }})
+    interactWithHamburgerMenu();
 })

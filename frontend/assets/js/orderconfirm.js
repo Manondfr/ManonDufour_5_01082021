@@ -1,9 +1,3 @@
-class Article {
-    constructor(jsonArticle) {
-        jsonArticle && Object.assign(this, jsonArticle);
-    } 
-}
-
 document.querySelector("#confirmSection").innerHTML = `     <h1>Merci ${getOrder().contact.firstName} !</h1>
                                                             <p> Votre commande n°${getOrder().orderId} a bien été enregistrée.</p>
                                                             <h2>Récapitulatif de la commande</h2>
@@ -33,26 +27,23 @@ fetch("http://localhost:3000/api/teddies/")
 .then( jsonListArticle => {
     let totalPrice = Number(document.querySelector("#totalPrice").textContent.replace(/[^\d]/g, ""));
     for(let jsonArticle of jsonListArticle) {
-    let article = new Article(jsonArticle);
-    let shoppingCartItems = getShoppingCartItems();
-    if (shoppingCartItems[0].includes(article._id)) {          
-        let array = new Array();
+        let article = new Article(jsonArticle);
         let arrayUniqueIds = new Array();
-        while(shoppingCartItems[0].includes(article._id)) {
-            let indexOfElement = shoppingCartItems[0].indexOf(article._id);
-            let lineConcat = shoppingCartItems[0].splice(indexOfElement, 1).concat(shoppingCartItems[1].splice(indexOfElement, 1)).join("-");
-            array.push(lineConcat);
-            arrayUniqueIds = Array.from(new Set(array))
-        };
-        for (arrayUniqueId of arrayUniqueIds) {
-            let space= arrayUniqueId.indexOf(" ");
-            document.querySelector("tbody").innerHTML += `  <tr>
-                                                            <td>${article.name}</td>
-                                                            <td>${arrayUniqueId.split("-")[1]}</td>
-                                                            <td>${countOccurencesOfColor(arrayUniqueId, array)}</td>
-                                                            <td>${article.price * ((countOccurencesOfColor(arrayUniqueId, array))/100)} €</td>`; 
-        document.querySelector("#totalPrice").textContent = `${totalPrice += (article.price * ((countOccurencesOfColor(arrayUniqueId, array))/100))} €`;
+        let shoppingCartItems = getShoppingCartItems();
+        for (shoppingCartItem of shoppingCartItems) {
+            let shoppingCartItemId = shoppingCartItem.split("-")[0];
+            if (shoppingCartItemId == article._id) {
+                arrayUniqueIds.push(shoppingCartItem);
+            }
+        }
+        arrayUniqueIds = Array.from(new Set(arrayUniqueIds));
+            for (arrayUniqueId of arrayUniqueIds) {
+                document.querySelector("tbody").innerHTML += `  <tr>
+                                                                <td>${article.name}</td>
+                                                                <td>${arrayUniqueId.split("-")[1]}</td>
+                                                                <td>${countOccurences(arrayUniqueId)}</td>
+                                                                <td>${article.price * ((countOccurences(arrayUniqueId))/100)} €</td>`; 
+            document.querySelector("#totalPrice").textContent = `${totalPrice += (article.price * ((countOccurences(arrayUniqueId))/100))} €`;
         };
     }
-}
 })

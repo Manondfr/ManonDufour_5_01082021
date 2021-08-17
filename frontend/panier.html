@@ -67,22 +67,22 @@
          
             </div>
             <h2>C'est presque terminé ! Il ne nous manque que quelques informations...</h2>
-            <form>
+            <form id="orderForm">
                 <div class="formInputs">
                     <div>
-                        <label for="firstName">Prénom</label><input class="formInputs__input" id="firstName" name="firstName" size="30" placeholder="André" required aria-required="true"/>
+                        <label for="firstName">Prénom</label><input class="formInputs__input" id="firstName" name="firstName" size="30" placeholder="André" pattern="[a-zA-ZÀ-ÿ- ]+" minlength="2" required aria-required="true"/>
                     </div>
                     <div>
-                        <label for="lastName">Nom</label><input class="formInputs__input" id="lastName" name="lastName" size="30" placeholder="Dupont" required aria-required="true"/>
+                        <label for="lastName">Nom</label><input class="formInputs__input" id="lastName" name="lastName" size="30" placeholder="Dupont" pattern="[a-zA-ZÀ-ÿ- ]+" minlength="2" required aria-required="true"/>
                     </div>
                     <div>
-                        <label for="address">Adresse</label><input class="formInputs__input" id="address" name="address" size="30" placeholder="2 Rue du Petit Pont" required aria-required="true" />
+                        <label for="address">Adresse</label><input class="formInputs__input" id="address" name="address" size="30" placeholder="2 Rue du Petit Pont" pattern="[0-9a-zA-ZÀ-ÿ- ]+" minlength="7" required aria-required="true" />
                     </div>
                     <div>
-                        <label for="city">Ville</label><input class="formInputs__input" id="city" name="city" size="30" placeholder="Saint-Priest" required aria-required="true" />
+                        <label for="city">Ville</label><input class="formInputs__input" id="city" name="city" size="30" placeholder="Saint-Priest" pattern="[a-zA-ZÀ-ÿ- ]+" minlength="2" required aria-required="true" />
                     </div>
                     <div>
-                        <label for="email">Adresse mail</label><input class="formInputs__input" id="email" name="email" type="email" size="30" placeholder="andredupont@gmail.com" required aria-required="true" />
+                        <label for="email">Adresse mail</label><input class="formInputs__input" id="email" name="email" type="email" pattern="[a-z0-9._+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" size="30" placeholder="andredupont@gmail.com" required aria-required="true" />
                     </div>
                 </div>
                 <div id="button">
@@ -107,6 +107,7 @@
     </footer>
 </div>
 
+<script src="assets/js/classes.js"></script>
 <script src="assets/js/cartManager.js"></script>
 <script src="assets/js/cart.js"></script>
 </body>

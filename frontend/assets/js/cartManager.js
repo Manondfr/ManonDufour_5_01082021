@@ -1,78 +1,32 @@
-/* function addToCart(articlesId) {
-    let shoppingCartItems = getShoppingCartItems();
-    shoppingCartItems.push(articlesId);
-    saveCart(shoppingCartItems);
-}*/
-
 function addToCart(articlesId, articlesColor) {
     let shoppingCartItems = getShoppingCartItems();
-    let shoppingCartItemsId = shoppingCartItems[0];
-    let shoppingCartItemsColor = shoppingCartItems[1];
-    shoppingCartItemsId.push(articlesId);
-    shoppingCartItemsColor.push(articlesColor);
+    shoppingCartItems.push(articlesId.concat("-", articlesColor));
     saveCart(shoppingCartItems);
 }
 
 
 function removeOfCart(arrayUniqueId) {
     let shoppingCartItems = getShoppingCartItems();
-    let shoppingCartItemsId = shoppingCartItems [0];
-    let shoppingCartItemsColor = shoppingCartItems [1];
-    let array = new Array();
-    while(shoppingCartItemsId.length > 0) {
-        let lineConcat = shoppingCartItemsId.splice(0, 1).concat(shoppingCartItemsColor.splice(0, 1)).join("-");
-        array.push(lineConcat);
-    }
-    array = array.filter(shoppingCartItem => shoppingCartItem !== arrayUniqueId);
-    for (arr of array) {
-        arr = arr.split("-");
-        shoppingCartItemsId.push(arr[0]);
-        shoppingCartItemsColor.push(arr[1]);
-    }
+    shoppingCartItems = shoppingCartItems.filter(shoppingCartItem => shoppingCartItem !== arrayUniqueId);
     saveCart(shoppingCartItems);
 }
 
 function removeOne(arrayUniqueId) {
     let shoppingCartItems = getShoppingCartItems();
-    let shoppingCartItemsId = shoppingCartItems[0];
-    let shoppingCartItemsColor = shoppingCartItems[1];
-    let array = new Array();
-    while(shoppingCartItemsId.length > 0) {
-        array.push(shoppingCartItemsId.splice(0, 1).concat(shoppingCartItemsColor.splice(0, 1)).join("-"));
-    }
-    let elementToRemove = array.indexOf(array.find(article => article == arrayUniqueId));
-    array.splice(elementToRemove, 1);
-    for (arr of array) {
-        shoppingCartItemsId.push(arr.split("-")[0]);
-        shoppingCartItemsColor.push(arr.split("-")[1]);
-    }
+    shoppingCartItems.splice(shoppingCartItems.indexOf(shoppingCartItems.find(shoppingCartItem => shoppingCartItem == arrayUniqueId)), 1);
     saveCart(shoppingCartItems);
 }
 
 function addOne(arrayUniqueId) {
     let shoppingCartItems = getShoppingCartItems();
-    let shoppingCartItemsId = shoppingCartItems[0];
-    let shoppingCartItemsColor = shoppingCartItems[1];
-    let array = new Array();   
-    while(shoppingCartItemsId.length > 0) {
-        let lineConcat = shoppingCartItemsId.splice(0, 1).concat(shoppingCartItemsColor.splice(0, 1)).join("-");
-        array.push(lineConcat);
-    }
-    array.push(arrayUniqueId);
-    for (arr of array) {
-        shoppingCartItemsId.push(arr.split("-")[0]);
-        shoppingCartItemsColor.push(arr.split("-")[1]);
-    }
+    shoppingCartItems.push(arrayUniqueId);
     saveCart(shoppingCartItems);
 }
 
 function getShoppingCartItems(){
     let shoppingCartItems = localStorage.getItem("shoppingCartItems");
     if(shoppingCartItems == null) {
-        let shoppingCartItems= new Array();
-        shoppingCartItems[0] = new Array();
-        shoppingCartItems[1] = new Array();
-        return shoppingCartItems;
+        return [];
     } else {
         return JSON.parse(shoppingCartItems);
     }
@@ -91,27 +45,59 @@ function saveOrder(postResult) {
     localStorage.setItem("postResult", JSON.stringify(postResult));
 }
 
-function countOccurences(articlesId) {
+function countOccurences(arrayUniqueId) {
     let shoppingCartItems = getShoppingCartItems();
-    let items = shoppingCartItems[0];
     let occurences = 0;
-    for(item of items) {
-        if (item == articlesId) {
+    for(shoppingCartItem of shoppingCartItems) {
+        if (shoppingCartItem == arrayUniqueId) {
             occurences ++;
         }       
     }
     return occurences;
 }
 
-function countOccurencesOfColor(arrayUniqueId, array) {
-    let occurences = 0;
-    for (let i = 0; i < array.length; i++) {
-        if (array[i] == arrayUniqueId) {
-            occurences ++;
+
+function displayCartQuantity() {
+    let cartIcon = document.querySelector("#cartIcon");
+    shoppingCartItems = getShoppingCartItems();
+    let cartQuantity = shoppingCartItems.length;
+    if(cartQuantity === 0) {
+        cartIcon.style.display = "none";
+        document.querySelector("span").style.display = "none";
+        if (!!document.querySelector("#orderForm")) {
+            document.querySelector("#cartSection__items").innerHTML = `<p>Votre panier est vide !</p><br>`
+            document.querySelector("#orderForm").style.display = "none";
+            document.querySelector("h2").style.display = "none";
         }
+    } else {
+        cartIcon.style.display = "initial";
+        document.querySelector("span").textContent = `${cartQuantity}`;
+        document.querySelector("span").style.display = "initial";
     }
-    return occurences;
 }
+
+function interactWithHamburgerMenu() {
+    let hamburgerMenu = document.querySelector("#mobileOnly");
+    let dropDownMenu = document.querySelector(".trymenu");
+    hamburgerMenu.addEventListener("click", function() {
+        if(dropDownMenu.classList.contains ("inactive")) {
+            dropDownMenu.classList.replace("inactive", "active");
+            hamburgerMenu.style.backgroundColor = "#392934e0";
+            document.querySelector("svg").setAttribute("viewBox", "0 0 352 512");
+            document.querySelector("svg").setAttribute("width", "23");
+            document.querySelector("svg").setAttribute("height", "23");
+            document.querySelector("path").setAttribute("d", "M242.72 256l100.07-100.07c12.28-12.28 12.28-32.19 0-44.48l-22.24-22.24c-12.28-12.28-32.19-12.28-44.48 0L176 189.28 75.93 89.21c-12.28-12.28-32.19-12.28-44.48 0L9.21 111.45c-12.28 12.28-12.28 32.19 0 44.48L109.28 256 9.21 356.07c-12.28 12.28-12.28 32.19 0 44.48l22.24 22.24c12.28 12.28 32.2 12.28 44.48 0L176 322.72l100.07 100.07c12.28 12.28 32.2 12.28 44.48 0l22.24-22.24c12.28-12.28 12.28-32.19 0-44.48L242.72 256z");
+        } else {
+            dropDownMenu.classList.replace("active", "inactive");
+            hamburgerMenu.style.backgroundColor = "transparent";
+            document.querySelector("svg").setAttribute("viewBox", "0 0 448 512");
+            document.querySelector("svg").setAttribute("width", "20");
+            document.querySelector("svg").setAttribute("height", "20");
+            document.querySelector("path").setAttribute("d", "M16 132h416c8.837 0 16-7.163 16-16V76c0-8.837-7.163-16-16-16H16C7.163 60 0 67.163 0 76v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16z");
+    };
+})
+}
+
 
 
 
