@@ -65,3 +65,9 @@ fetch("http://localhost:3000/api/teddies/")
     document.querySelector("#confirmSection p").textContent = `Une erreur est survenue. Veuillez essayer à nouveau.`;
 })
 
+// Affichage du nombre d'articles au panier dans le header
+displayCartQuantity();
+
+// Ouverture et fermeture du menu mobile
+interactWithHamburgerMenu();
+

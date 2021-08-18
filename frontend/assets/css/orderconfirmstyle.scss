@@ -1,44 +1,7 @@
-// Variables
-$logo-color:#f4e9f2;
-$background-color:#f4e9f23d;
-$button-color: #936884;
-$font-family:(headings:"Satisfy", button:"Satisfy", text:"Roboto");
-$font-size:(headings:1.6em, heading_h2: 1.2em, button: 1.2em, text:0.9em);
+@import "./generalstyle.scss";
 
-// Mixins
-@mixin tabletstyle {
-    @media all and (min-width:483px){
-        @content;
-    }
-}
-
-@mixin desktopstyle {
-    @media all and (min-width:993px){
-        @content;
-    }
-}
-
-// Balises générales
-body
-{
-    margin:0;
-    padding:0;
-    width:auto;
-    font-family: map-get($map: $font-family, $key:text );
-}
-
-a
-{
-    color:black;
-    text-decoration:none;
-}
-
-h1,h2
-{
-    font-family:map-get($map: $font-family, $key: headings);
-    margin: auto;
-}
-
+// Balises spécifiques page de confirmation de commande
+// Générales
 h1
 {
     font-size: map-get($map: $font-size, $key: headings);
@@ -58,8 +21,6 @@ h2
 
 p
 {
-    margin-top:10px;
-    padding:0;
     font-size:0.8em;
     @include tabletstyle() {
         font-size: map-get($map: $font-size, $key: text);
@@ -68,128 +29,15 @@ p
 
 button
 {
-    background-color:$button-color;
-    color:white;
-    height:50px;
     width:55%;
-    border-radius:25px;
-    cursor:pointer;
-    position:relative;
-    border:none;
-    font-size:map-get($map: $font-size, $key: button);
-    font-family: map-get($map: $font-family, $key: button);
     @include tabletstyle() {
         width:220px;
     }
-
-
-    &:hover
-    {
-        &::after
-        {
-            opacity:0.2;
-        }
-    }
-
-    &::after
-    {
-        content:"";
-        position:absolute;
-        top: 0;
-        right: 0;
-        bottom: 0;  
-        left: 0;
-        background-color: lighten($button-color,25%);
-        color:white;
-        border:none;
-        border-radius:25px;
-        opacity:0;
-        transition: opacity 250ms;
-        box-shadow: 2px 2px 10px $button-color;
-    }
 }
 
-// Header
-header
-{
-    display:flex;
-    justify-content: space-between;
-    align-items: center;
-    padding:0 20px 0px 0px;
-    @include tabletstyle() {
-        padding:0 50px 0px 0px;
-    }
 
 
-    img
-    {
-        width:80px;
-        margin-top:5px;
-        @include tabletstyle() {
-            width:120px;
-            margin-top:2px;
-        }
-    }
-
-    a
-    {
-        font-weight:600;
-        color:white;
-        text-transform: uppercase;
-        letter-spacing: 1px;
-    }
-}
-
-#logoPart
-{
-    background-color:$logo-color;
-    width:110px;
-    border-radius:30% / 70%;
-    margin:5px 0px 0px 5px;
-    text-align:center;
-    @include tabletstyle() {
-        width:160px;
-    }
-}
-
-#navigationMenu
-{
-    display:none;
-    @include tabletstyle() {
-        display: initial;
-        display:flex;
-        width:180px;
-        justify-content: space-between;
-    }
-
-    li
-    {
-        color:white;
-    }
-}
-
-#mobileOnly
-{
-    fill:white;
-    background-color: transparent;
-    padding-top:15px;
-    @include tabletstyle() {
-        display:none;
-    }
-}
-
-// Bannière principale
-#backgroundContainer
-{
-    background-image: url(../img/teddy-5091798.jpg);
-    background-attachment: fixed;
-    background-size:cover;
-    background-position-x: -100px;
-    @include desktopstyle() {
-        background-position-x: -70px;
-    }
-}
-
+// Récapitulatif de commande
 #confirmSection
 {
     background-color: rgba(255, 255, 255, 0.8);
@@ -203,7 +51,6 @@ header
     }
 }
 
-//Récapitulatif de commande
 table
 {
     margin: 15px auto 25px auto;
@@ -223,43 +70,3 @@ table
 }
 
 
-//Footer
-footer
-{
-    background-color: $logo-color;
-    margin:0;
-    padding:20px 0;
-}
-
-ul
-{
-    text-align:center;
-    list-style-type: none;
-    padding:0;
-
-    li 
-    {
-        margin-top:5px;
-    }
-}
-
-#socialPart
-{
-    width:70%;
-    margin:auto;
-    display:flex;
-    justify-content:space-between;
-    @include tabletstyle() {
-        width:250px;
-    }
-}
-
-i
-{
-    color:$button-color;
-
-    &:hover
-    {
-        color:darken($color: $button-color, $amount: 20%);
-    }
-}

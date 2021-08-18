@@ -92,7 +92,7 @@ function displayCartQuantity() {
 // Ouverture et fermeture du menu mobile
 function interactWithHamburgerMenu() {
     let hamburgerMenu = document.querySelector("#mobileOnly");
-    let dropDownMenu = document.querySelector(".trymenu");
+    let dropDownMenu = document.querySelector(".dropdownMenu");
     hamburgerMenu.addEventListener("click", function() {
         if(dropDownMenu.classList.contains ("inactive")) {
             dropDownMenu.classList.replace("inactive", "active");

@@ -5,85 +5,27 @@ body {
   font-family: "Roboto";
 }
 
-a {
-  color: black;
-  text-decoration: none;
-}
-
 h1, h2 {
   font-family: "Satisfy";
   margin: auto;
 }
 
-h1 {
-  font-size: 1.6em;
-  width: 60%;
-  padding: 10px 0;
-}
-
-@media all and (min-width: 993px) {
-  h1 {
-    width: 70%;
-  }
-}
-
-h2 {
-  font-size: 1.2em;
-  padding-top: 20px;
-  margin: 30px 20px 0px 20px;
-}
-
 p {
   margin-top: 10px;
   padding: 0;
-  font-size: 0.8em;
 }
 
-@media all and (min-width: 483px) {
-  p {
-    font-size: 0.9em;
-  }
+a {
+  color: black;
+  text-decoration: none;
 }
 
-button {
-  background-color: #936884;
-  color: white;
-  height: 50px;
-  width: 55%;
-  border-radius: 25px;
-  cursor: pointer;
-  position: relative;
-  border: none;
-  font-size: 1.2em;
-  font-family: "Satisfy";
-}
-
-@media all and (min-width: 483px) {
-  button {
-    width: 220px;
-  }
-}
-
-button:hover::after {
-  opacity: 0.2;
-}
-
-button::after {
-  content: "";
+span {
   position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  background-color: #c9b2c1;
-  color: white;
-  border: none;
-  border-radius: 25px;
-  opacity: 0;
-  -webkit-transition: opacity 250ms;
-  transition: opacity 250ms;
-  -webkit-box-shadow: 2px 2px 10px #936884;
-          box-shadow: 2px 2px 10px #936884;
+  top: 10px;
+  right: 30px;
+  z-index: 1;
+  color: black;
 }
 
 header {
@@ -96,7 +38,7 @@ header {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  padding: 0 20px 0px 0px;
+  padding: 0;
 }
 
 @media all and (min-width: 483px) {
@@ -124,6 +66,75 @@ header a {
   letter-spacing: 1px;
 }
 
+nav ul {
+  display: none;
+}
+
+@media all and (min-width: 483px) {
+  nav ul {
+    display: initial;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    width: 180px;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+  }
+}
+
+nav ul li {
+  color: white;
+}
+
+.dropdownMenu {
+  width: 100%;
+  height: 75px;
+  margin: auto;
+  position: absolute;
+  top: 50px;
+  right: 0px;
+  padding: 5px 0;
+  color: black;
+  background-color: #392934e0;
+}
+
+.dropdownMenu.inactive {
+  display: none;
+}
+
+.dropdownMenu.active {
+  display: initial;
+}
+
+@media all and (min-width: 483px) {
+  .dropdownMenu.active {
+    display: none;
+  }
+}
+
+.dropdownMenu li {
+  padding: 5px 0;
+}
+
+#mobileOnly {
+  fill: white;
+  background-color: transparent;
+  padding-top: 15px;
+  width: 80px;
+  border-radius: 0;
+}
+
+@media all and (min-width: 483px) {
+  #mobileOnly {
+    display: none;
+  }
+}
+
+#mobileOnly:hover::after {
+  opacity: 0;
+}
+
 #logoPart {
   background-color: #f4e9f2;
   width: 110px;
@@ -138,37 +149,12 @@ header a {
   }
 }
 
-#navigationMenu {
-  display: none;
-}
-
-@media all and (min-width: 483px) {
-  #navigationMenu {
-    display: initial;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    width: 180px;
-    -webkit-box-pack: justify;
-        -ms-flex-pack: justify;
-            justify-content: space-between;
-  }
-}
-
-#navigationMenu li {
-  color: white;
-}
-
-#mobileOnly {
-  fill: white;
-  background-color: transparent;
-  padding-top: 15px;
-}
-
-@media all and (min-width: 483px) {
-  #mobileOnly {
-    display: none;
-  }
+#cartIcon {
+  position: absolute;
+  top: 9px;
+  right: 24px;
+  z-index: 0;
+  fill: #f4e9f2;
 }
 
 #backgroundContainer {
@@ -184,34 +170,38 @@ header a {
   }
 }
 
-#confirmSection {
-  background-color: rgba(255, 255, 255, 0.8);
-  text-align: center;
-  padding: 50px 20px 30px 20px;
-  margin: 15px 15px 35px 15px;
-}
-
-@media all and (min-width: 993px) {
-  #confirmSection {
-    width: 80%;
-    margin: 35px auto;
-    max-width: 1000px;
-  }
-}
-
-table {
-  margin: 15px auto 25px auto;
-  border-collapse: collapse;
-}
-
-table th, table td {
-  border: 0.5px solid black;
-  width: 250px;
-}
-
-table th {
+button {
   background-color: #936884;
   color: white;
+  height: 50px;
+  border-radius: 25px;
+  cursor: pointer;
+  position: relative;
+  border: none;
+  font-size: 1.2em;
+  font-family: "Satisfy";
+}
+
+button:hover::after {
+  opacity: 0.2;
+}
+
+button::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: #c9b2c1;
+  color: white;
+  border: none;
+  border-radius: 25px;
+  opacity: 0;
+  -webkit-transition: opacity 250ms;
+  transition: opacity 250ms;
+  -webkit-box-shadow: 2px 2px 10px #936884;
+          box-shadow: 2px 2px 10px #936884;
 }
 
 footer {
@@ -253,5 +243,73 @@ i {
 
 i:hover {
   color: #573e4e;
+}
+
+h1 {
+  font-size: 1.6em;
+  width: 60%;
+  padding: 10px 0;
+}
+
+@media all and (min-width: 993px) {
+  h1 {
+    width: 70%;
+  }
+}
+
+h2 {
+  font-size: 1.2em;
+  padding-top: 20px;
+  margin: 30px 20px 0px 20px;
+}
+
+p {
+  font-size: 0.8em;
+}
+
+@media all and (min-width: 483px) {
+  p {
+    font-size: 0.9em;
+  }
+}
+
+button {
+  width: 55%;
+}
+
+@media all and (min-width: 483px) {
+  button {
+    width: 220px;
+  }
+}
+
+#confirmSection {
+  background-color: rgba(255, 255, 255, 0.8);
+  text-align: center;
+  padding: 50px 20px 30px 20px;
+  margin: 15px 15px 35px 15px;
+}
+
+@media all and (min-width: 993px) {
+  #confirmSection {
+    width: 80%;
+    margin: 35px auto;
+    max-width: 1000px;
+  }
+}
+
+table {
+  margin: 15px auto 25px auto;
+  border-collapse: collapse;
+}
+
+table th, table td {
+  border: 0.5px solid black;
+  width: 250px;
+}
+
+table th {
+  background-color: #936884;
+  color: white;
 }
 /*# sourceMappingURL=orderconfirmstyle.css.map */
