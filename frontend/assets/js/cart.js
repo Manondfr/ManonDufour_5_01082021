@@ -128,6 +128,7 @@ document.querySelector("#orderButton").addEventListener("click", function(e) {
             },
             "products" : products,
         };
+        console.log(body);
     for(let input of document.querySelectorAll("form")){
         if(input.reportValidity() === false) {
             break;
