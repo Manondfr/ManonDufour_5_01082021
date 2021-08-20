@@ -19,13 +19,6 @@ function removeOne(arrayUniqueId) {
     saveCart(shoppingCartItems);
 }
 
-// Ajout d'un article depuis le panier (via les + et - de la colonne Quantité)
-function addOne(arrayUniqueId) {
-    let shoppingCartItems = getShoppingCartItems();
-    shoppingCartItems.push(arrayUniqueId);
-    saveCart(shoppingCartItems);
-}
-
 // Sauvegarde des produits ajoutés au panier
 function saveCart(shoppingCartItems) {
     localStorage.setItem("shoppingCartItems", JSON.stringify(shoppingCartItems));
@@ -61,26 +54,25 @@ function countOccurences(arrayUniqueId) {
             occurences ++;
         }       
     }
-    return occurences;
+    return occurences; 
 }
 
 // Affichage du nombre d'articles au panier dans le header
 function displayCartQuantity() {
-    let cartIcon = document.querySelector("#cartIcon");
+    let cartIcon = document.querySelector(".cartIcon");
     shoppingCartItems = getShoppingCartItems();
     let cartQuantity = shoppingCartItems.length;
     if(cartQuantity === 0) {
-        cartIcon.style.display = "none";
-        document.querySelector("span").style.display = "none";
+        cartIcon.classList.add("noDisplay");
+        document.querySelector("span").classList.add("noDisplay");
         if (!!document.querySelector("#orderForm")) {
             document.querySelector("#cartSection__items").innerHTML = `<p>Votre panier est vide !</p><br>`
-            document.querySelector("#orderForm").style.display = "none";
-            document.querySelector("h2").style.display = "none";
+            document.querySelector("#orderForm").classList.add("noDisplay");
+            document.querySelector("h2").classList.add("noDisplay");
         }
     } else {
         cartIcon.style.display = "initial";
         document.querySelector("span").textContent = `${cartQuantity}`;
-        document.querySelector("span").style.display = "initial";
         if (cartQuantity > 9) {
             document.querySelector("span").style.right = "25px";
         } else {
@@ -117,5 +109,3 @@ function createErrorSentence(parentElement) {
     errorSentence.style.paddingBottom = "15px";
     document.querySelector(parentElement).appendChild(errorSentence);
 }
-
-

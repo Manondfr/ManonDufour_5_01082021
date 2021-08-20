@@ -3,8 +3,8 @@ if ("content" in document.querySelector("template")) {
     let template = document.querySelector("template");
     let clone = template.content.cloneNode(true);
     clone.querySelector("h1").textContent = `Merci ${getOrder().contact.firstName} !`;
-    clone.querySelector("p").textContent = `Votre commande n°${getOrder().orderId} a bien été enregistrée.`;
-    clone.querySelector("p:nth-child(2)").textContent = `Un email de confirmation vous a été envoyé à l'adresse mail ${getOrder().contact.email}`;
+    clone.querySelector("p:nth-child(2)").textContent = `Votre commande n°${getOrder().orderId} a bien été enregistrée.`;
+    clone.querySelector("#mailSentence").textContent = `Un email de confirmation vous a été envoyé à l'adresse mail ${getOrder().contact.email}`;
     document.querySelector("#confirmSection").appendChild(clone);
 } else {
     document.querySelector("#confirmSection").innerHTML = `     <h1>Merci ${getOrder().contact.firstName} !</h1>
@@ -69,5 +69,4 @@ fetch("http://localhost:3000/api/teddies/")
 displayCartQuantity();
 
 // Ouverture et fermeture du menu mobile
-interactWithHamburgerMenu();
-
+interactWithHamburgerMenu(); 

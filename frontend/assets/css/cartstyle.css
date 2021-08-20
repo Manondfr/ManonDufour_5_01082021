@@ -150,12 +150,16 @@ nav ul li {
   }
 }
 
-#cartIcon {
+.cartIcon {
   position: absolute;
   top: 9px;
   right: 24px;
   z-index: 0;
   fill: #f4e9f2;
+}
+
+.cartIcon.noDisplay {
+  display: none;
 }
 
 #backgroundContainer {
@@ -268,6 +272,10 @@ h2 {
   h2 {
     font-size: 1.2em;
   }
+}
+
+h2.noDisplay {
+  display: none;
 }
 
 button {
@@ -479,6 +487,10 @@ svg {
 
 #totalPriceCart {
   font-weight: bold;
+}
+
+#orderForm.noDisplay {
+  display: none;
 }
 
 .formInputs {

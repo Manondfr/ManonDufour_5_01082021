@@ -52,18 +52,14 @@ fetch(urlToFetch)
             let select = document.querySelector("#colors");
             let userChoice = select.value;
             addToCart(this.dataset.id, userChoice);
-            document.querySelector(".addToCartButton").textContent = " ✓";
-            document.querySelector(".addToCartButton").style.fontSize = "1.5em";
-            document.querySelector("#cartIcon").style.display = "initial";
+            document.querySelector(".addToCartButton").textContent = " ✓";            
             let shoppingCartItems = getShoppingCartItems();
             let cartQuantity = shoppingCartItems.length;
             document.querySelector("span").textContent = `${cartQuantity}`;
-            document.querySelector("span").style.display = "initial";
-            document.querySelector("span").style.color = "black";
+            document.querySelector("span").classList.remove("noDisplay");
+            document.querySelector(".cartIcon").classList.remove("noDisplay");
             setTimeout(function() {
-                document.querySelector(".addToCartButton").textContent = "Ajouter au panier";
-                document.querySelector(".addToCartButton").style.fontSize = "1.2em";
-                document.querySelector(".addToCartButton").style.backgroundColor = "#936884";                
+                document.querySelector(".addToCartButton").textContent = "Ajouter au panier";             
             }, 600); 
         })
     });
@@ -77,4 +73,4 @@ fetch(urlToFetch)
 displayCartQuantity();
 
 // Ouverture et fermeture du menu mobile
-interactWithHamburgerMenu();
+interactWithHamburgerMenu(); 

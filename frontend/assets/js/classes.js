@@ -12,4 +12,4 @@ class Contact {
        this.city = city;
        this.email = email;
     } 
-}
+} 

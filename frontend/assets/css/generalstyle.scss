@@ -165,13 +165,18 @@ nav ul
     }
 }
 
-#cartIcon
+.cartIcon
 {
     position:absolute;
     top:9px;
     right:24px;
     z-index: 0;
     fill:$logo-color;
+
+    &.noDisplay
+    {
+        display:none;
+    }
 }
 
 

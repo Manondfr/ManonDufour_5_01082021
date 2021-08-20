@@ -20,6 +20,11 @@ h2
     @include desktopstyle() {
         font-size: map-get($map: $font-size, $key: heading_h2);
     }
+    
+    &.noDisplay
+    {
+        display:none;
+    }
 }
 
 button
@@ -201,6 +206,12 @@ svg
 
 
 // Formulaire
+#orderForm {
+    &.noDisplay {
+        display:none;
+    }
+}
+
 .formInputs
 {
     padding: 10px 0px 10px 0px;

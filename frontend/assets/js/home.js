@@ -42,4 +42,4 @@ fetch("http://localhost:3000/api/teddies/")
 displayCartQuantity();
 
 // Ouverture et fermeture du menu mobile
-interactWithHamburgerMenu();
+interactWithHamburgerMenu(); 

@@ -112,7 +112,7 @@ fetch("http://localhost:3000/api/teddies/")
         plusSign.addEventListener("click", function() {
             let totalPriceOfItem = this.parentElement.parentElement.lastChild.previousSibling.textContent;
             totalPriceOfItem = Number(totalPriceOfItem.replace(/[^\d]/g, ""));
-            addOne(this.dataset.id);
+            addToCart(this.dataset.id.split("-")[0], this.dataset.id.split("-")[1]);
             let newOcurrence = countOccurences(this.dataset.id);
             this.previousSibling.previousSibling.setAttribute("value", newOcurrence);
             let totalPrice = this.parentElement.parentElement.lastChild.previousSibling;
@@ -127,11 +127,11 @@ fetch("http://localhost:3000/api/teddies/")
 })
 .catch(function() {
     createErrorSentence("#cartSection__items");
-    document.querySelector("table").style.display = "none";
-    document.querySelector("form").style.display = "none";
-    document.querySelector("h2").style.display = "none";
+    document.querySelector("table").classList.add("noDisplay");
+    document.querySelector("form").classList.add("noDisplay");
+    document.querySelector("h2").classList.add("noDisplay");
     document.querySelector("#cartSection__items p").textContent = `Oups ! Nous n'avons pas réussi à récupérer votre panier. Veuillez actualiser la page.`;
-})
+}) 
 
 // Affichage du nombre d'articles au panier dans le header
 displayCartQuantity();
@@ -182,11 +182,9 @@ document.querySelector("#orderButton").addEventListener("click", function(e) {
             })
             .then(postResult => saveOrder(postResult))
             .then(window.location.href = "confirm_commande.html")
-            .catch(function() {
-                alert("Une erreur est survenue lors de l'envoi des données");
-                window.location.reload();
+            .catch(function() {                
+                alert("Une erreur est survenue lors de l'envoi des données");                
             })
         }
     }
 })
-             

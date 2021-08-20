@@ -149,12 +149,16 @@ nav ul li {
   }
 }
 
-#cartIcon {
+.cartIcon {
   position: absolute;
   top: 9px;
   right: 24px;
   z-index: 0;
   fill: #f4e9f2;
+}
+
+.cartIcon.noDisplay {
+  display: none;
 }
 
 #backgroundContainer {
