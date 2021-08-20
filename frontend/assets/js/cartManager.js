@@ -116,7 +116,7 @@ function getOrder() {
 // Affichage du nombre d'articles au panier dans le header
 function displayCartQuantity() {
     let cartIcon = document.querySelector(".cartIcon");
-    shoppingCartItems = getShoppingCartItems();
+    let shoppingCartItems = getShoppingCartItems();
     let cartQuantity = shoppingCartItems.length;
     if(cartQuantity === 0) {
         cartIcon.classList.add("noDisplay");

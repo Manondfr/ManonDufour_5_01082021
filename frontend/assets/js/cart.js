@@ -128,7 +128,7 @@ document.querySelector("#orderButton").addEventListener("click", function(e) {
             },
             "products" : products,
         };
-        console.log(body);
+        document.querySelector("h2").textContent = `${body.contact.firstName}`;
     for(let input of document.querySelectorAll("form")){
         if(input.reportValidity() === false) {
             break;
@@ -138,7 +138,7 @@ document.querySelector("#orderButton").addEventListener("click", function(e) {
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body : JSON.stringify(body),
+                "body" : JSON.stringify(body),
             })
             .then(function(res) {
                 if (res.ok) {
