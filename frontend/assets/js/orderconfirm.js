@@ -64,3 +64,7 @@ displayCartQuantity();
 
 // Ouverture et fermeture du menu mobile
 interactWithHamburgerMenu(); 
+
+window.addEventListener("beforeunload", function () {
+    localStorage.clear();
+})
