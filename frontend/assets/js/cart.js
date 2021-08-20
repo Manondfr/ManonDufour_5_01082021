@@ -1,43 +1,38 @@
-// Récupération des articles du backend
+// Récupération des articles du backend 
 fetch("http://localhost:3000/api/teddies/")
 .then( data => data.json())
 .then( jsonListArticle => {
     // Pour chaque article du backend, recherche d'une correspondance avec les produits enregistrés dans le localStorage
-        for(let jsonArticle of jsonListArticle) {
-            let article = new Article(jsonArticle);
-            let arrayUniqueIds = new Array();
-            let shoppingCartItems = getShoppingCartItems();
-            for (shoppingCartItem of shoppingCartItems) {
-                let shoppingCartItemId = shoppingCartItem.split("-")[0];
-                    if (shoppingCartItemId == article._id) {
-                        arrayUniqueIds.push(shoppingCartItem);
-                    }
+    for(let jsonArticle of jsonListArticle) {
+        let article = new Article(jsonArticle);
+        let arrayUniqueIds = new Array();
+        arrayUniqueIds = searchMatch(article, arrayUniqueIds);
+
+        // Création d'un tableau arrayUniqueIds qui supprime les correspondances en double et permet donc de n'afficher qu'une seule ligne par typologie de produit
+        arrayUniqueIds = Array.from(new Set(arrayUniqueIds)); 
+        for (arrayUniqueId of arrayUniqueIds) {
+            if ("content" in document.querySelector("template")) {
+                let template = document.querySelector("template");
+                let clone = template.content.cloneNode(true);
+                let line = clone.querySelectorAll("td");
+                clone.querySelector("td img").setAttribute("src", `${article.imageUrl}`);
+                clone.querySelector("td img").setAttribute("alt", `Photo de l'article ${article.name}`);
+                line[1].textContent = `${article.name}`;
+                line[2].textContent = `${arrayUniqueId.split("-")[1]}`;
+                line[3].textContent = `${article.price/100} €`;
+                let svgs = clone.querySelectorAll("td svg");
+                for (svg of svgs) {
+                    svg.setAttribute("data-id", `${arrayUniqueId}`);
                 }
-            // Création d'un tableau arrayUniqueIds qui supprime les correspondances en double et permet donc de n'afficher qu'une seule ligne par typologie de produit
-            arrayUniqueIds = Array.from(new Set(arrayUniqueIds)); 
-            for (arrayUniqueId of arrayUniqueIds) {
-                if ("content" in document.querySelector("template")) {
-                    let template = document.querySelector("template");
-                    let clone = template.content.cloneNode(true);
-                    let line = clone.querySelectorAll("td");
-                    clone.querySelector("td img").setAttribute("src", `${article.imageUrl}`);
-                    clone.querySelector("td img").setAttribute("alt", `Photo de l'article ${article.name}`);
-                    line[1].textContent = `${article.name}`;
-                    line[2].textContent = `${arrayUniqueId.split("-")[1]}`;
-                    line[3].textContent = `${article.price/100} €`;
-                    let svgs = clone.querySelectorAll("td svg");
-                    for (svg of svgs) {
-                        svg.setAttribute("data-id", `${arrayUniqueId}`);
-                    }
-                    clone.querySelector("td label").setAttribute("for", `quantity${article.name}`);
-                    clone.querySelector("td input").classList.add("quantity");
-                    clone.querySelector("td input").setAttribute("id", `quantity${article.name}`);
-                    clone.querySelector("td input").setAttribute("value", `${countOccurences(arrayUniqueId)}`);
-                    line[6].setAttribute("data-price", `${article.price}`);
-                    line[6].textContent = `${(countOccurences(arrayUniqueId) * article.price)/100} €`;
-                    document.querySelector("tbody").appendChild(clone);
-                } else {
-                    document.querySelector("tbody").innerHTML += `  <tr>
+                clone.querySelector("td label").setAttribute("for", `quantity${article.name}`);
+                clone.querySelector("td input").classList.add("quantity");
+                clone.querySelector("td input").setAttribute("id", `quantity${article.name}`);
+                clone.querySelector("td input").setAttribute("value", `${countOccurences(arrayUniqueId)}`);
+                line[6].setAttribute("data-price", `${article.price}`);
+                line[6].textContent = `${(countOccurences(arrayUniqueId) * article.price)/100} €`;
+                document.querySelector("tbody").appendChild(clone);
+            } else {
+                document.querySelector("tbody").innerHTML +=    `   <tr>
                                                                         <td class="imageColumn" ><img src="${article.imageUrl}" alt="Photo de l'article ${article.name}"></td>
                                                                         <td>${article.name}</td>
                                                                         <td>${arrayUniqueId.split("-")[1]}</td>
@@ -53,13 +48,9 @@ fetch("http://localhost:3000/api/teddies/")
                                                                         <td data-price="${article.price}">${(countOccurences(arrayUniqueId) * article.price)/100} €</td>
                                                                     </tr>
                                                                 `;     
-                }
-                // Gestion de la taille de l'input quantité selon que le nombre d'article comporte 1 ou 2 chiffres
-                if (countOccurences(arrayUniqueId) > 9) {
-                    document.querySelector(`#quantity${article.name}`).style.width = "15px";
-                };      
-            }
-        };
+            };
+        }
+    };
     // Calcul du prix total de l'ensemble des articles
     let lines = document.querySelectorAll("tbody tr");
     let totalPriceOfItems = 0;
@@ -73,36 +64,18 @@ fetch("http://localhost:3000/api/teddies/")
     // Mise à la corbeille de tous les articles de l'ID sélectionné
     document.querySelectorAll(".binSvg").forEach(binButton => {
         binButton.addEventListener("click", function() {
-            let totalPriceOfItem = this.parentElement.parentElement.lastChild.previousSibling.textContent;
-            totalPriceOfItem = Number(totalPriceOfItem.replace(/[^\d]/g, ""));
-            document.querySelector("#totalPriceCart").textContent = `Montant total TTC : ${totalPriceOfItems -= totalPriceOfItem} €`;
-            removeOfCart(this.dataset.id);
-            this.parentElement.parentElement.innerHTML = ``;
-            displayCartQuantity();
+            removeAll(this);
         })
     });
 
     // Suppression de l'un des articles de l'ID sélectionné
     document.querySelectorAll(".minusSign").forEach(minusSign => {
         minusSign.addEventListener("click", function() {
-            let totalPriceOfItem = this.parentElement.parentElement.lastChild.previousSibling.textContent;
-            totalPriceOfItem = Number(totalPriceOfItem.replace(/[^\d]/g, ""));
             if (countOccurences(this.dataset.id) == 1) {            
-                removeOfCart(this.dataset.id);
-                document.querySelector("#totalPriceCart").textContent = `Montant total TTC : ${totalPriceOfItems -= totalPriceOfItem} €`;
-                this.parentElement.parentElement.innerHTML = ``;
-                displayCartQuantity();
+                removeAll(this);
             } else {
-                removeOne(this.dataset.id);
-                let newOccurence = countOccurences(this.dataset.id);
-                this.nextSibling.nextSibling.nextSibling.nextSibling.setAttribute("value", newOccurence);
-                let totalPrice = this.parentElement.parentElement.lastChild.previousSibling;
-                totalPrice.innerHTML = `${(totalPrice.dataset.price * newOccurence)/100} €`;
-                document.querySelector("#totalPriceCart").textContent = `Montant total TTC : ${totalPriceOfItems -= (totalPrice.dataset.price)/100} €`;
-                displayCartQuantity();
-                if (newOccurence < 10) {
-                    this.nextSibling.nextSibling.nextSibling.nextSibling.style.width = "10px";
-                }
+                removeOne(this.dataset.id, this);
+                this.nextSibling.nextSibling.nextSibling.nextSibling.setAttribute("value", countOccurences(this.dataset.id));           
             };
         })
     })
@@ -110,18 +83,10 @@ fetch("http://localhost:3000/api/teddies/")
     // Ajout d'un article à l'ID sélectionné
     document.querySelectorAll(".plusSign").forEach(plusSign => {
         plusSign.addEventListener("click", function() {
-            let totalPriceOfItem = this.parentElement.parentElement.lastChild.previousSibling.textContent;
-            totalPriceOfItem = Number(totalPriceOfItem.replace(/[^\d]/g, ""));
             addToCart(this.dataset.id.split("-")[0], this.dataset.id.split("-")[1]);
-            let newOcurrence = countOccurences(this.dataset.id);
-            this.previousSibling.previousSibling.setAttribute("value", newOcurrence);
-            let totalPrice = this.parentElement.parentElement.lastChild.previousSibling;
-            totalPrice.textContent = `${(totalPrice.dataset.price * newOcurrence)/100} €`;
-            document.querySelector("#totalPriceCart").textContent = `Montant total TTC : ${totalPriceOfItems += (totalPrice.dataset.price/100)} €`;
+            this.previousSibling.previousSibling.setAttribute("value", countOccurences(this.dataset.id));
+            updatePriceOfItems(this);
             displayCartQuantity();
-            if (newOcurrence > 9) {
-                this.previousSibling.previousSibling.style.width = "15px";
-            }
         })
     })
 })
@@ -131,7 +96,7 @@ fetch("http://localhost:3000/api/teddies/")
     document.querySelector("form").classList.add("noDisplay");
     document.querySelector("h2").classList.add("noDisplay");
     document.querySelector("#cartSection__items p").textContent = `Oups ! Nous n'avons pas réussi à récupérer votre panier. Veuillez actualiser la page.`;
-}) 
+})
 
 // Affichage du nombre d'articles au panier dans le header
 displayCartQuantity();

@@ -29,6 +29,11 @@ span {
   color: black;
 }
 
+span.noDisplay {
+  display: none;
+  color: transparent;
+}
+
 header {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -134,6 +139,10 @@ nav ul li {
 
 #mobileOnly:hover::after {
   opacity: 0;
+}
+
+#mobileOnly.opened {
+  background-color: #392934e0;
 }
 
 #logoPart {
@@ -280,7 +289,6 @@ h2.noDisplay {
 
 button {
   width: 55%;
-  margin-bottom: 35px;
 }
 
 @media all and (min-width: 483px) {
@@ -405,6 +413,10 @@ table img {
   }
 }
 
+table.noDisplay {
+  display: none;
+}
+
 svg {
   cursor: pointer;
 }
@@ -435,9 +447,9 @@ svg {
 .quantity {
   margin: 0;
   font-size: 0.9em;
-  width: 10px;
+  width: 15px;
   height: 18px;
-  padding-left: 5px;
+  padding-right: 4px;
   /* Firefox */
   -moz-appearance: textfield;
   /* Chrome */
@@ -456,7 +468,6 @@ svg {
 
 @media all and (min-width: 483px) {
   .quantity {
-    width: 10px;
     height: 15px;
   }
 }
@@ -491,6 +502,10 @@ svg {
 
 #orderForm.noDisplay {
   display: none;
+}
+
+#orderForm button {
+  margin-bottom: 35px;
 }
 
 .formInputs {

@@ -40,13 +40,7 @@ fetch("http://localhost:3000/api/teddies/")
     for(let jsonArticle of jsonListArticle) {
         let article = new Article(jsonArticle);
         let arrayUniqueIds = new Array();
-        let shoppingCartItems = getShoppingCartItems();
-        for (shoppingCartItem of shoppingCartItems) {
-            let shoppingCartItemId = shoppingCartItem.split("-")[0];
-            if (shoppingCartItemId == article._id) {
-                arrayUniqueIds.push(shoppingCartItem);
-            }
-        }
+        arrayUniqueIds = searchMatch(article, arrayUniqueIds);
         // Création d'un tableau arrayUniqueIds qui supprime les correspondances en double et permet donc de n'afficher qu'une seule ligne par typologie de produit
         arrayUniqueIds = Array.from(new Set(arrayUniqueIds));
             for (arrayUniqueId of arrayUniqueIds) {

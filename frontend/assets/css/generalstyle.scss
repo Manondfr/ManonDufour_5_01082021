@@ -54,6 +54,12 @@ span
     right:30px;
     z-index:1;
     color:black;
+
+    &.noDisplay 
+    {
+        display:none;
+        color:transparent;
+    }
 }
 
 // Header
@@ -150,6 +156,11 @@ nav ul
         {
             opacity:0;
         }
+    }
+
+    &.opened
+    {
+        background-color: #392934e0;
     }
 }
 

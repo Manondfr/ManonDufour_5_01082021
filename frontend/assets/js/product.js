@@ -52,16 +52,12 @@ fetch(urlToFetch)
             let select = document.querySelector("#colors");
             let userChoice = select.value;
             addToCart(this.dataset.id, userChoice);
-            document.querySelector(".addToCartButton").textContent = " ✓";            
-            let shoppingCartItems = getShoppingCartItems();
-            let cartQuantity = shoppingCartItems.length;
-            document.querySelector("span").textContent = `${cartQuantity}`;
-            document.querySelector("span").classList.remove("noDisplay");
-            document.querySelector(".cartIcon").classList.remove("noDisplay");
+            displayCartQuantity();         
+            document.querySelector(".addToCartButton").textContent = " ✓";   
             setTimeout(function() {
                 document.querySelector(".addToCartButton").textContent = "Ajouter au panier";             
             }, 600); 
-        })
+        }) 
     });
 })
 .catch(function() {

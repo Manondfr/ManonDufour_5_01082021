@@ -28,6 +28,11 @@ span {
   color: black;
 }
 
+span.noDisplay {
+  display: none;
+  color: transparent;
+}
+
 header {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -133,6 +138,10 @@ nav ul li {
 
 #mobileOnly:hover::after {
   opacity: 0;
+}
+
+#mobileOnly.opened {
+  background-color: #392934e0;
 }
 
 #logoPart {

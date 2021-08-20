@@ -30,7 +30,6 @@ h2
 button
 {
     width:55%;
-    margin-bottom: 35px;
     @include tabletstyle() {
         width:220px;
     }
@@ -131,6 +130,11 @@ table
             max-width: 150px;
         }
     }
+
+    &.noDisplay
+    {
+        display:none;
+    }
 }
 
 svg
@@ -159,9 +163,9 @@ svg
 {
     margin:0;
     font-size:0.9em;
-    width:10px;
+    width:15px;
     height:18px;
-    padding-left:5px;
+    padding-right:4px;
     /* Firefox */
 	-moz-appearance: textfield;
 	/* Chrome */
@@ -174,8 +178,7 @@ svg
 		-o-appearance: none;
 		margin: 0; 
 	}
-    @include tabletstyle() {
-        width:10px;
+    @include tabletstyle() {        
         height:15px;
     }
 }
@@ -209,6 +212,11 @@ svg
 #orderForm {
     &.noDisplay {
         display:none;
+    }
+
+    button
+    {
+        margin-bottom: 35px;
     }
 }
 
