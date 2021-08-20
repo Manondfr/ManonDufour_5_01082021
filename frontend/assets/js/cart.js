@@ -128,7 +128,6 @@ document.querySelector("#orderButton").addEventListener("click", function(e) {
             },
             "products" : products,
         };
-        document.querySelector("h2").textContent = `${body.contact.firstName}`;
     for(let input of document.querySelectorAll("form")){
         if(input.reportValidity() === false) {
             break;
