@@ -48,7 +48,7 @@ fetch("http://localhost:3000/api/teddies/")
                                                                 <td>${article.name}</td>
                                                                 <td>${arrayUniqueId.split("-")[1]}</td>
                                                                 <td>${countOccurences(arrayUniqueId)}</td>
-                                                                <td>${article.price * ((countOccurences(arrayUniqueId))/100)} €</td>`; 
+                                                                <td>${(article.price * ((countOccurences(arrayUniqueId))/100)).toFixed()} €</td>`; 
             document.querySelector("#totalPrice").textContent = `${totalPrice += (article.price * ((countOccurences(arrayUniqueId))/100))} €`;
         };
     }
