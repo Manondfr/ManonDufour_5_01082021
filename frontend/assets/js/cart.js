@@ -107,31 +107,31 @@ interactWithHamburgerMenu();
 // Au clic sur le bouton de commande, vérification des données saisies par l'utilisateur, récupération et enregistrement de celles-ci si valides, renvoi vers la page de confirmation de commande
 document.querySelector("#orderButton").addEventListener("click", function(e) {
     e.preventDefault();
+    let firstName = document.querySelector("#firstName").value;
+    let lastName = document.querySelector("#lastName").value;
+    let address = document.querySelector("#address").value;
+    let city = document.querySelector("#city").value;
+    let email = document.querySelector("#email").value;
+    let contact = new Contact(firstName, lastName, address, city, email);
+    let shoppingCartItems = getShoppingCartItems();
+    let products = new Array();
+    for (shoppingCartItem of shoppingCartItems) {
+        products.push(shoppingCartItem.split("-")[0])
+    }
+    let body = {
+        "contact" : {
+            "firstName" : contact.firstName,
+            "lastName" : contact.lastName,
+            "address" : contact.address,
+            "city" : contact.city,
+            "email" : contact.email,                
+            },
+            "products" : products,
+        };
     for(let input of document.querySelectorAll("form")){
         if(input.reportValidity() === false) {
             break;
         } else {
-            let firstName = document.querySelector("#firstName").value;
-            let lastName = document.querySelector("#lastName").value;
-            let address = document.querySelector("#address").value;
-            let city = document.querySelector("#city").value;
-            let email = document.querySelector("#email").value;
-            let contact = new Contact(firstName, lastName, address, city, email);
-            let shoppingCartItems = getShoppingCartItems();
-            let products = new Array();
-            for (shoppingCartItem of shoppingCartItems) {
-                products.push(shoppingCartItem.split("-")[0])
-            }
-            let body = {
-                "contact" : {
-                    "firstName" : contact.firstName,
-                    "lastName" : contact.lastName,
-                    "address" : contact.address,
-                    "city" : contact.city,
-                    "email" : contact.email,                
-                    },
-                    "products" : products,
-                };
             fetch("http://localhost:3000/api/teddies/order", {
                 "method" : "POST",
                 headers: {
