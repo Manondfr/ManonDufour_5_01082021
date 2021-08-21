@@ -145,10 +145,10 @@ document.querySelector("#orderButton").addEventListener("click", function(e) {
                 }
             })
             .then(postResult => saveOrder(postResult))
-            .then(window.location.href = "confirm_commande.html")
             .catch(function() {                
                 alert("Une erreur est survenue lors de l'envoi des données");                
-            })
+            }) 
+            .then(window.location.href = "confirm_commande.html")           
         }
     }
 })
